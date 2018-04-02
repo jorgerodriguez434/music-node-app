@@ -1,9 +1,2 @@
 language: node_js
 node_js: node
-deploy:
-  provider: heroku
-  api_key:
-    secure: G1JQWvSK6JrGsqr8Ub8yIAD5cavcGbG+ff2yaRVET3CJRIqMd8wHryMIEued2IFd2LPbt8qocpsTiJEDIcF+tNcqmcA3rGygbeAnpaT7bFCsRp4zdYsyCdMmwcatzjqGcINhJ04o/dtVyc7xRLlsxeSstIWDgfqOzcI0WyQRJ0tteOLw/sHKGrQLX+6U9yh2GWUwhBDaRNdh3wGnoQpcxnOeJiOsJYuaZY2oXi/l2VtL1pLmNcKcopqemB3NTSC5nuB0yJL3bjiD+yj9GEJ6e7tnxwx6/1C+U9I+08HiL6gd8x3lVmbA7kdo1eB/htXl9N8ksSXX452l1YVGzVjch41S+/ISLrE+/+xcOYLJWxB5c//u6PIER4Lx615984EHSk17AX9oeazUbMmZGUJL2uUWT0K3rijaBXhAhjhGKV1I81D28kSY/Kvb2QcRaP/wcnWj+ATpEiNjHznZLao5eVte/3h6l+7Zc/OdA6bJtqvNMoBfoYDQFCJzlEQIaZtN06iuUBeoduJcfwLNsUemZollHXfOlThmq6qQaVdfUL/cO0B8DZDO7SH+cqoEnpAGfyf5i+1or8qaahn2H7v2XiJAEEitmm/rHwwYZtx+QOwIydyk16ARf4359UjY+7Y3Vz87Vxv5W+dHDSxrcERb9lisIrfiPtAQ1Q6PlWt6Wc4=
-  app: lychee-cobbler-54574
-  on:
-    repo: jorgerodriguez434/music-node-app
