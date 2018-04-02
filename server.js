@@ -1,11 +1,16 @@
+'use strict'
+
 const express = require('express');
 const app = express();
 app.use(express.static('public'));
+
+const {Playlist} = require('./public/client-side-app');
 
 
 app.get('/music-app', (req, res) => {
 
       console.log('making a GET request');
+      res.json(Playlist.get()); //how to create an object that has methods, class??
       res.status(200).end();
 
 }); 

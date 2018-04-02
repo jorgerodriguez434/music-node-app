@@ -43,6 +43,18 @@ describe ('Music App', function() {
 					   });
 			
 	});*/
+	it ('should return a json object', function() {
+
+			return chai
+					   .request(app)
+					   .get('/music-app')
+					   .then(function (res) {
+
+					   		expect(res).to.be.json;
+
+					   });
+
+	});
 
 
 });

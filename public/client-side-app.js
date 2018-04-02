@@ -30,22 +30,33 @@ const MOCK_POST_PLAYLIST = {
 		    ]
 
 
-}
+};
 
 
-function getPlaylist(cb) {
+
+const Playlist = {
+
+		get: function () {
+
+				return MOCK_POST_PLAYLIST;
+
+		}
+};  
+
+/*
+const getPlaylist = cb => {
   
   setTimeout ( () => {
     
     cb(MOCK_POST_PLAYLIST)
     
-  }, 100);
+  }, 1000);
   
-}
-
-function showPlaylist (data) {
+} */
+/*
+const showPlaylist = data => {
   
-   data.playlist.map(item => {
+   	data.playlist.map(item => {
 
    		$('body').append(
 
@@ -60,8 +71,8 @@ function showPlaylist (data) {
   
 }
 
-getPlaylist(showPlaylist);
+getPlaylist(showPlaylist);*/
 
 
-
+module.exports = {Playlist};
 
