@@ -1,62 +1,31 @@
-console.log("hi");
-
-const MOCK_POST_PLAYLIST = {
-
-		playlist: [ 
-		  
-		            {
-		              id: "000",
-		              song: "Thriller",
-		              artist: "Michael Jackson"
-		            }, 
-		  
-		            {
-		              id: "001",
-		              song: "Like a Prayer",
-		              artist: "Madonna"
-		            }, 
-		            
-		            {
-		              id: "002",
-		              song: "When Doves Cry",
-		              artist: "Prince"
-		            }, 
-		            
-		            {
-		              id: "003",
-		              song: "I Wanna Dance With Somebody",
-		              artist: "Whitney Houston"
-		            }, 
-		    ]
+const playlist = [
 
 
-};
+		{id: "000",
+		 song: "Thriller",
+		 artist: "Michael Jackson"}, 
+
+		{id: "001",
+		 song: "Like a Prayer",
+		 artist: "Madonna"}
 
 
+]
 
-const Playlist = {
+function getPlaylist (cb) {
 
-		get: function () {
+	//make json get request to endpoint
+	setTimeout(() => {
 
-				return MOCK_POST_PLAYLIST;
+				cb(playlist);
 
-		}
-};  
+	}, 1000);
 
-/*
-const getPlaylist = cb => {
+}
+
+function showPlaylist (data) {
   
-  setTimeout ( () => {
-    
-    cb(MOCK_POST_PLAYLIST)
-    
-  }, 1000);
-  
-} */
-/*
-const showPlaylist = data => {
-  
-   	data.playlist.map(item => {
+   	data.map(item => {
 
    		$('body').append(
 
@@ -71,8 +40,11 @@ const showPlaylist = data => {
   
 }
 
-getPlaylist(showPlaylist);*/
+getPlaylist(showPlaylist);
 
 
-module.exports = {Playlist};
+
+
+
+
 
