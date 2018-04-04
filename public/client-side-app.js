@@ -1,31 +1,7 @@
-const playlist = [
+$.getJSON('http://localhost:8080/music-node-app')
+.then(data => {
 
-
-		{id: "000",
-		 song: "Thriller",
-		 artist: "Michael Jackson"}, 
-
-		{id: "001",
-		 song: "Like a Prayer",
-		 artist: "Madonna"}
-
-
-]
-
-function getPlaylist (cb) {
-
-	//make json get request to endpoint
-	setTimeout(() => {
-
-				cb(playlist);
-
-	}, 1000);
-
-}
-
-function showPlaylist (data) {
-  
-   	data.map(item => {
+		data.playlist.map(item => {
 
    		$('body').append(
 
@@ -33,14 +9,12 @@ function showPlaylist (data) {
    					   <h4> ${item.song}  </h4>
    					   <p> -- ${item.artist} </p>
 
-   					`
+  					`
    			);
 
-   });
-  
-}
+  	 }).catch(err => console.log(err));
 
-getPlaylist(showPlaylist);
+});
 
 
 
