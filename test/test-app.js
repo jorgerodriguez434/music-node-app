@@ -1,14 +1,16 @@
 const chai = require('chai');
 const http = require('chai-http');
 const expect = chai.expect;
+const mongoose = require('mongoose');
 
 const { app, runServer, closeServer } = require('../server')
-
+const {TEST_DATABASE_URL} = require('../config');
+//import model
 chai.use(http);
 
 
 before(function() {
-    return runServer();
+    return runServer(TEST_DATABASE_URL);
   });
 
   after(function() {
@@ -22,7 +24,7 @@ describe ('Music App', function() {
 
 			return chai
 					   .request(app)
-					   .get('/music-app')
+					   .get('/music-node-app')
 					   .then(function (res) {
 
 					   		expect(res).to.have.status(200);
@@ -30,24 +32,11 @@ describe ('Music App', function() {
 					   });
 
 	});
-	/*
-	it ('should be in html', function() {
-
-			return chai
-					   .request(app)
-					   .get('/music-app')
-					   .then(function (res) {
-
-					   		expect(res).to.have.text.html('Hello World');
-
-					   });
-			
-	});*/
 	it ('should return a json object', function() {
 
 			return chai
 					   .request(app)
-					   .get('/music-app')
+					   .get('/music-node-app')
 					   .then(function (res) {
 
 					   		expect(res).to.be.json;
