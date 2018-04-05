@@ -11,9 +11,17 @@ const morgan = require('morgan');
 const router = require('./router');
 const { DATABASE_URL, PORT } = require('./config');
 
+const cors = require('cors');
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(morgan('common'));
 app.use(express.static('public'));
-app.use('/music-node-app', router)
+app.use('/api/playlist', router)
  
 let server;
 // this function connects to our database, then starts the server

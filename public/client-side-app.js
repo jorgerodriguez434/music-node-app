@@ -1,7 +1,7 @@
 $.getJSON('http://localhost:8080/music-node-app')
 .then(data => {
 
-		data.playlist.map(item => {
+		data.map(item => {
 
    		$('body').append(
 
@@ -12,9 +12,10 @@ $.getJSON('http://localhost:8080/music-node-app')
   					`
    			);
 
-  	 }).catch(err => console.log(err));
+  	 });
 
-});
+})
+.catch(err => console.log(err));
 
 
 

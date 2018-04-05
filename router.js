@@ -14,10 +14,9 @@ router.get('/', (req, res) => {
       .catch(err => {
 
       		console.error(err);
-      		res.status(500).json({ error: 'something went terribly wrong' });
+      		res.status(500).json({error: `${err}`})
 
-    });
-
+      })
 });
 
 router.post('/', jsonParser, (req, res) => {
@@ -25,12 +24,25 @@ router.post('/', jsonParser, (req, res) => {
 		console.log('making a POST request');
 		PlayList.create({
 
-		              id: req.body.id,
+		              local_id: req.body.id, //it is body
 		              song: req.body.song,
 		              artist: req.body.artist
 
 		})
 		.then(item => res.status(201).json(item));
+
+});
+
+router.delete('/:id', (req, res) => {
+
+		console.log('making a DELETE request');
+		//need to target a specific item
+		PlayList.findByIdAndRemove(req.params.id)
+		.then(  () => {
+
+				res.status(204).json(req.params.id);
+
+		});
 
 });
 

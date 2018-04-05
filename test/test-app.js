@@ -25,7 +25,7 @@ describe ('Music App', function() {
 
 			return chai
 					   .request(app)
-					   .get('/music-node-app')
+					   .get('/api/playlist')
 					   .then(function (res) {
 
 					   		expect(res).to.have.status(200);
@@ -37,7 +37,7 @@ describe ('Music App', function() {
 
 			return chai
 					   .request(app)
-					   .get('/music-node-app')
+					   .get('/api/playlist')
 					   .then(function (res) {
 
 					   		expect(res).to.be.json;
@@ -45,11 +45,12 @@ describe ('Music App', function() {
 					   });
 
 	});
+
 	it ('should return a 201 status code on POST request', function() {
 
 			return chai
 					   .request(app)
-					   .post('/music-node-app')
+					   .post('/api/playlist')
 					   .then(function (res) {
 
 					   		expect(res).to.have.status(201);
@@ -58,14 +59,14 @@ describe ('Music App', function() {
 
 	});
 
-	it ('should create and return a json object on POST request', function() {
+	it ('should create and return created json object on POST request', function() {
 
 			return chai
 					   .request(app)
-					   .post('/music-node-app')
+					   .post('/api/playlist')
 					   .send({
 
-					   		id: "002",
+					   		local_id: "002",
 		              		song: "When Doves Cry",
 		             	    artist: "Prince"
 
@@ -73,6 +74,19 @@ describe ('Music App', function() {
 					   .then(function (res) {
 
 					   		expect(res).to.be.json;
+
+					   });
+
+	});
+
+	it ('should return a 204 status code on DELETE request', function() {
+
+			return chai
+					   .request(app)
+					   .delete('/api/playlist/5ac532ba041f6850c1157c7a')
+					   .then(function (res) {
+
+					   		expect(res).to.have.status(204);
 
 					   });
 

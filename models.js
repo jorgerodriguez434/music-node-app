@@ -3,7 +3,7 @@ mongoose.Promise = global.Promise;
 
 const PlayListSchema =  mongoose.Schema({
 
-	id: String,
+	local_id: String,
 	song: String,
 	artist: String,
 	created: {type: Date, default: Date.now}
