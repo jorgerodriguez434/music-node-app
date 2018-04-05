@@ -10,17 +10,8 @@ const jsonParser = bodyParser.json();
 router.get('/', (req, res) => {
 
       console.log('making a GET request');
-      //res.json(MOCK_POST_PLAYLIST); 
       PlayList.find()
-      .then(playlist => {
-
-      			res.status(200).json(playlist.map(item => {
-
-      					/*return data*/
-
-      			})); //res
-
-      })//then
+      .then(playlist => res.status(200).json(playlist));
 
 });
 
@@ -33,8 +24,8 @@ router.post('/', jsonParser, (req, res) => {
 		              song: req.body.song,
 		              artist: req.body.artist
 
-		})//create
-		.then(playlist => res.json(playlist));
+		})
+		.then(item => res.status(201).json(item));
 
 });
 
