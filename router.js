@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-//const {MOCK_POST_PLAYLIST} = require('./database');
 const { PlayList } = require('./models');
 
 const bodyParser = require('body-parser');

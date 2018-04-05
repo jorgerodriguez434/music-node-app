@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const { app, runServer, closeServer } = require('../server')
 const {TEST_DATABASE_URL} = require('../config');
 
-//import model
+
 chai.use(http);
 
 
