@@ -24,7 +24,7 @@ router.post('/', jsonParser, (req, res) => {
 		console.log('making a POST request');
 		PlayList.create({
 
-		              local_id: req.body.local_id, //it is body
+		              local_id: req.body.local_id,
 		              song: req.body.song,
 		              artist: req.body.artist
 
