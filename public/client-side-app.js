@@ -1,4 +1,4 @@
-$.getJSON('http://localhost:8080/api/playlist')
+$.getJSON('http://localhost:8080/api/git splaylist')
 .then(data => {
 
 		data.map(item => {
@@ -15,7 +15,7 @@ $.getJSON('http://localhost:8080/api/playlist')
   	 });
 
 })
-.catch(err => console.log(err));
+.catch(err => console.log(err)); 
 
 
 
