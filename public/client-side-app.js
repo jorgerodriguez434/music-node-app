@@ -1,4 +1,4 @@
-$.getJSON('http://localhost:8080/music-node-app')
+$.getJSON('http://localhost:8080/api/playlist')
 .then(data => {
 
 		data.map(item => {
