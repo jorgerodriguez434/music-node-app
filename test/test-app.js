@@ -79,18 +79,58 @@ describe ('Music App', function() {
 
 	});
 
-	it ('should return a 204 status code on DELETE request', function() {
+	it ('should return a 200 status code on DELETE request', function() {
 
 			return chai
 					   .request(app)
 					   .delete('/api/playlist/5ac532ba041f6850c1157c7a')
 					   .then(function (res) {
 
-					   		expect(res).to.have.status(204);
+					   		expect(res).to.have.status(200);
 
 					   });
 
 	});
+
+	it ('should delete and return deleted json object on DELETE request', function() {
+
+			return chai
+					   .request(app)
+					   .delete('/api/playlist/5ac532ba041f6850c1157c7a')
+					   .then(function (res) {
+
+					   		expect(res).to.be.json;
+
+					   });
+
+	});
+
+	it ('should return a 200 status code on PUT request', function() {
+
+			return chai
+					   .request(app)
+					   .put('/api/playlist/5ac532ba041f6850c1157c7a')
+					   .then(function (res) {
+
+					   		expect(res).to.have.status(200);
+
+					   });
+
+	});
+
+	it ('should update and return updated json object on PUT request', function() {
+
+			return chai
+					   .request(app)
+					   .put('/api/playlist/5ac532ba041f6850c1157c7a')
+					   .then(function (res) {
+
+					   		expect(res).to.be.json;
+
+					   });
+
+	});
+
 
 
 

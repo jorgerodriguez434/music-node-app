@@ -24,7 +24,7 @@ router.post('/', jsonParser, (req, res) => {
 		console.log('making a POST request');
 		PlayList.create({
 
-		              local_id: req.body.id, //it is body
+		              local_id: req.body.local_id, //it is body
 		              song: req.body.song,
 		              artist: req.body.artist
 
@@ -38,9 +38,31 @@ router.delete('/:id', (req, res) => {
 		console.log('making a DELETE request');
 		//need to target a specific item
 		PlayList.findByIdAndRemove(req.params.id)
-		.then(  () => {
+		.then(item => {
+				console.log(item);
+				res.json(item);
+				res.status(200).end();
+		});
 
-				res.status(204).json(req.params.id);
+});
+
+router.put('/:id', jsonParser, (req, res) => {
+
+		console.log('making a PUT request')
+		PlayList.findByIdAndUpdate(req.params.id, 
+												{ 
+													$set:
+													{
+														song: `${req.body.song}`,
+														artist: `${req.body.artist}`
+													}
+												}, 
+												{ new: true } )
+		.then(item => {
+
+				console.log(item);
+				res.json(item);
+				res.status(200).end();
 
 		});
 
