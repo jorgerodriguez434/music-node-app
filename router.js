@@ -21,7 +21,7 @@ router.post('/', jsonParser, (req, res) => {
 
 		              local_id: req.body.local_id,
 		              song: req.body.song,
-		              genre: req.genre,
+		              genre: req.body.genre,
 		              artist: req.body.artist
 
 

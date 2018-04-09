@@ -1,6 +1,6 @@
 console.log("hi");
 
-$('.playlist').on('click', event => {
+$('.get-button').on('click', event => {
     event.preventDefault();
     $.getJSON('https://lychee-shortcake-58019.herokuapp.com/api/playlist')
     .then(data => {
@@ -18,6 +18,8 @@ $('.playlist').on('click', event => {
 
   	 });  
 
-   })
-    .catch(err => console.log(err)); 
+   }).catch(err => console.log(err)); 
+  
+   $('.playlist').hide();
+    
 });
