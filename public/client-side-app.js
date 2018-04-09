@@ -2,7 +2,7 @@ $.getJSON('https://lychee-shortcake-58019.herokuapp.com/api/playlist')
 .then(data => {
 
 		data.map(item => {
-
+		console.log(data);
    		$('body').append(
 
    					`
