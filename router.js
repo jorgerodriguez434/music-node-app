@@ -19,13 +19,11 @@ router.post('/', jsonParser, (req, res) => {
 		console.log('making a POST request');
 		PlayList.create({
 
-		              playlist: {
-		              				local_id: req.body.local_id,
-		              				song: req.body.song,
-		              				genre: req.body.genre
-		              				artist: req.body.artist
+		              local_id: req.body.local_id,
+		              song: req.body.song,
+		              genre: req.genre,
+		              artist: req.body.artist
 
-		          	  }
 
 		})
 		.then(item => res.status(201).json(item));
