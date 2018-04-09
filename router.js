@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 
       console.log('making a GET request');
       PlayList.find()
-      .then(playlist => res.status(200).json(playlist));
+      .then(data => res.status(200).json(data.playlist));
 
 });
 
