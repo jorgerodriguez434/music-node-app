@@ -1,7 +1,7 @@
-$.getJSON('https://localhost:8080/api/playlist')
+$.getJSON('mongodb://music-app:mongoose@ds213239.mlab.com:13239/my-first-mlab-db')
 .then(data => {
 
-		data.map(item => {
+		data.playlist.map(item => {
 
    		$('body').append(
 
