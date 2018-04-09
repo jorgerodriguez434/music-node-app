@@ -12,7 +12,7 @@ $.getJSON('https://lychee-shortcake-58019.herokuapp.com/api/playlist')
   					`
    			);
 
-  	 });
+  	 }); 
 
 })
 .catch(err => console.log(err)); 
