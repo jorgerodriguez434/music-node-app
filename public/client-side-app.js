@@ -1,4 +1,4 @@
-$.getJSON('mongodb://music-app:mongoose@ds213239.mlab.com:13239/my-first-mlab-db')
+$.getJSON('https://lychee-shortcake-58019.herokuapp.com/api/playlist')
 .then(data => {
 
 		data.playlist.map(item => {
