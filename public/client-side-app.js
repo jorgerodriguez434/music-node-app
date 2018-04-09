@@ -1,8 +1,12 @@
-$.getJSON('https://lychee-shortcake-58019.herokuapp.com/api/playlist')
-.then(data => {
+console.log("hi");
 
-		data.map(item => {
-		console.log(data);
+$('.playlist').on('click', event => {
+    event.preventDefault();
+    $.getJSON('https://lychee-shortcake-58019.herokuapp.com/api/playlist')
+    .then(data => {
+    console.log(data);
+	 	data.map(item => {
+		
    		$('body').append(
 
    					`
@@ -14,12 +18,6 @@ $.getJSON('https://lychee-shortcake-58019.herokuapp.com/api/playlist')
 
   	 });  
 
-})
-.catch(err => console.log(err)); 
-
-
-
-
-
-
-
+   })
+    .catch(err => console.log(err)); 
+});

@@ -3,21 +3,25 @@
 		            {
 		              "local_id": "000",
 		              "song": "Thriller",
+		              "genre": "na",
 		              "artist": "Michael Jackson"
 		            }, 
 		            {
 		              "local_id": "001",
 		              "song": "Like a Prayer",
+		              "genre": "na",
 		              "artist": "Madonna"
 		            }, 
 		            {
 		              "local_id": "002",
 		              "song": "When Doves Cry",
+		              "genre": "na",
 		              "artist": "Prince"
 		            },
 		            {
 		              "local_id": "003",
 		              "song": "I Wanna Dance With Somebody",
+		              "genre": "na",
 		              "artist": "Whitney Houston"
 		            }
 		        ]
