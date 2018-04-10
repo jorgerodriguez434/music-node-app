@@ -5,15 +5,17 @@ const PLAYLIST = $('.playlist');
 $('.get-button').on('click', event => {
     
     event.preventDefault();
+    PLAYLIST.empty();
+    console.log("Making a GET request");
     $.getJSON(PLAYLIST_API_ENDPOINT)
     .then(data => {
       
           console.log(data);
           if(data.length === 0){
             console.log("There are no songs!");
-            PLAYLIST.text("There are no songs!");
+            PLAYLIST.text("Error: There are no songs!");
           } 
-          PLAYLIST.empty()
+          
 	 	      data.map(item => {
 		
    	            PLAYLIST.append(
@@ -27,6 +29,7 @@ $('.get-button').on('click', event => {
 
   	      });  
 
+
    })
    .catch(err => console.log(err)); 
   
@@ -37,6 +40,7 @@ $('.get-button').on('click', event => {
 $('.post-button').on('click', event => {
   
     event.preventDefault();
+    console.log("Making a POST request");
     $.post(PLAYLIST_API_ENDPOINT, JSON.stringify({
       
             local_id: "010",
