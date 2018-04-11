@@ -4,35 +4,41 @@
   
 }
 body{
-	background-color: black;
 	color: white;
 	background-image: url('http://www.lovethispic.com/uploaded_images/39799-Music-Is-Life.jpg');
-
+	background-attachment: fixed;
+	opacity: .9;
+	font-family: 'PT Serif', serif;
+	
 }
 main{
-	border: 2px solid tomato;
-	background-color: yellow;
-	width: 90%;
-	height: 90%;
-	margin-left: auto;
-  	margin-right: auto;
+
+	background-color: #e5e5e5;
+	padding-left: 5%;
+  	padding-right: 5%;
+  	padding-bottom: 5%;
+  	padding-top: 5%;
+
 }
 header{
-	border: 2px solid yellow;
-	width: 90%;
-	height: 90%;
+	border: 2px solid black;
+	height: 300px;
 	margin-left: auto;
   	margin-right: auto;
+  	margin-bottom: 15%;
+  	background-image: url('https://templated.co/items/demos/caminar/images/pic01.jpg');
+}
+p{
+  color: green;
+  font-size: 20px;
 }
 .playlist{
   color: gray;
   font-size: 20px;
 }
-.purple{
-  color: purple;
-}
 .main-content{
-  border: 2px solid blue;
+  
+  border-radius: 50px;
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 5%;
@@ -40,13 +46,35 @@ header{
   padding-left: 5%;
   padding-right: 5%;
   padding-bottom: 5%;
+  padding-top: 1%;
   background-color: white;
   color: black;
  }
+ .button{
+ 	height: 30px;
+  	border: 2px solid #000000;
+ }
+ .button:hover {
+  background-color: #339933;
+  transform: scale(1.4);
+}
+.button {
+  border-radius: 10px;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+  cursor: pointer;
+  font-size: 15px;
+  margin-bottom: 10px;
+  background-color: #6D8891;
+  color: black;
+  min-width: 100px;
+  height: 30px;
+  border: 2px solid #000000;
+  background-color: transparent;
+  transition: background-color 1s, color 1s, transform 1s;
+}
  /* Non-mobile */
 @media only screen and (min-width: 640px) {
 
-  main{
-  	background-color: purple;
-  }
+  
 }

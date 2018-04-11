@@ -32,8 +32,6 @@ $('.get-button').on('click', event => {
 
    })
    .catch(err => console.log(err)); 
-  
-   PLAYLIST.addClass('purple');
     
 });
 
