@@ -14,12 +14,14 @@ router.get('/', (req, res) => {
 
 });
 
+let count = 0;
 router.post('/', formParser, (req, res) => {
 		console.log(req.body);
         console.log('making a POST request');
+        count++;
         PlayList.create({
 
-                      local_id: req.body.local_id,
+                      local_id: count,
                       song: req.body.song,
                       genre: req.body.genre,
                       artist: req.body.artist
@@ -27,7 +29,7 @@ router.post('/', formParser, (req, res) => {
 
         }).then(data => {
           
-          PlayList.findById(data._id, (error, song) => res.status(200).json(song));
+          PlayList.findById(data._id, (error, song) => res.status(201).json(song));
           
         }).catch(err => console.log(err));
 

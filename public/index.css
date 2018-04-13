@@ -43,6 +43,23 @@ hr {
     margin: 1em 0;
     padding: 0;
 }
+label {
+	text-align: left;
+	color: red;
+}
+ input{
+ 	height: 40px;
+ 	width: 50%;
+ 	background-color: #f2f2f2;
+ 	margin-bottom: 20px;
+ }
+ form button{
+ 	display: block;
+ 	margin: auto;
+ }
+ .my-text{
+ 	font-size: 20px;
+ }
 .black{
 	color: black;
 }
@@ -69,23 +86,9 @@ hr {
  	background-color: transparent;
  	margin-bottom: 25px;
  }
- .lorem-content{
+.lorem-content{
 	padding: 30px 30px 30px 30px;
 }
-.main-content{
-  
-  border-radius: 50px;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-bottom: 5%;
-  padding-top: 1%;
-  background-color: white;
-  color: black;
- }
  .button:hover {
   background-color: #80bbff; 
 }
@@ -104,6 +107,7 @@ hr {
   font-size: 17px;
   height: 50px;
   width: 90%;
+
  
 }
 .learn-more-button{

@@ -35,14 +35,18 @@ $('.get-button').on('click', event => {
 });
 
 $('.post-button').on('click', event => {
+
+    const userSong = document.getElementById("song-name").value;
+    const userArtist = document.getElementById("artist-name").value;
+
     $.ajax({
         url: PLAYLIST_API_ENDPOINT,
         method: 'POST',
         data: {
-            local_id: "010",
-            song: "Baby One More Time",
+
+            song: userSong,
             genre: "Pop",
-            artist: "Britney Spears"
+            artist: userArtist
         },
         success: function(data) {
             console.log(data);
