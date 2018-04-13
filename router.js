@@ -5,7 +5,7 @@ const { PlayList } = require('./models');
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-
+const formParser = bodyParser.urlencoded();
 router.get('/', (req, res) => {
 
       console.log('making a GET request');
@@ -14,19 +14,22 @@ router.get('/', (req, res) => {
 
 });
 
-router.post('/', jsonParser, (req, res) => {
+router.post('/', formParser, (req, res) => {
+		console.log(req.body);
+        console.log('making a POST request');
+        PlayList.create({
 
-		console.log('making a POST request');
-		PlayList.create({
-
-		              local_id: req.body.local_id,
-		              song: req.body.song,
-		              genre: req.body.genre,
-		              artist: req.body.artist
+                      local_id: req.body.local_id,
+                      song: req.body.song,
+                      genre: req.body.genre,
+                      artist: req.body.artist
 
 
-		})
-		.then(item => res.status(201).json(item));
+        }).then(data => {
+          
+          PlayList.findById(data._id, (error, song) => res.status(200).json(song));
+          
+        }).catch(err => console.log(err));
 
 });
 

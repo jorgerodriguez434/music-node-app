@@ -4,38 +4,73 @@
   
 }
 body{
-	color: white;
-	background-image: url('http://www.lovethispic.com/uploaded_images/39799-Music-Is-Life.jpg');
+	color: #C8C8C8;
 	background-attachment: fixed;
 	opacity: .9;
-	font-family: 'PT Serif', serif;
+	font-family: 'Titillium Web', sans-serif;
+	background-color: white;
+	background-color: #f2f2f2;
 	
 }
-main{
+header{
+	text-align: center;
+	margin-bottom: 10px;
+  	background-image: url('https://templated.co/items/demos/transitive/images/banner.jpg');
+  	background-repeat: no-repeat;
+  	background-size: cover;
+  	color: white;
 
-	background-color: #e5e5e5;
+}
+main{
 	padding-left: 5%;
   	padding-right: 5%;
   	padding-bottom: 5%;
   	padding-top: 5%;
-
-}
-header{
-	text-align: center;
-	border: 2px solid black;
-	height: 300px;
-	margin-left: auto;
-  	margin-right: auto;
-  	margin-bottom: 15%;
-  	background-image: url('https://templated.co/items/demos/caminar/images/pic01.jpg');
 }
 p{
-  color: green;
-  font-size: 20px;
+  color: #C8C8C8;
+  font-size: 17px;
+}
+img{
+	width: 100%;
+
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+.black{
+	color: black;
+}
+.white{
+	color: white;
 }
 .playlist{
   color: gray;
   font-size: 20px;
+}
+.content1{
+  text-align: center;
+  background-color: white;
+  margin-bottom: 25px;
+  padding-top: 10px;
+
+ }
+.content2{
+ 	height: 700px;
+ 	background-image: url('https://templated.co/items/demos/transitive/images/bg.jpg');
+ 	background-size: cover;
+ 	text-align: center;
+ 	opacity: .9;
+ 	background-color: transparent;
+ 	margin-bottom: 25px;
+ }
+ .lorem-content{
+	padding: 30px 30px 30px 30px;
 }
 .main-content{
   
@@ -51,49 +86,56 @@ p{
   background-color: white;
   color: black;
  }
- .button{
- 	height: 30px;
-  	border: 2px solid black;
- }
  .button:hover {
-  background-color: #339933;
-  transform: scale(1.4);
+  background-color: #80bbff; 
+}
+.learn-more-button:hover{
+	background-color: #505050;
+
 }
 .button {
-  border-radius: 10px;
-  transition-duration: 1s;
-  transition-timing-function: linear;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 17px;
   margin-bottom: 10px;
-  background-color: #6D8891;
-  font-family: 'PT Serif', serif;
-  color: black;
-  min-width: 100px;
-  height: 30px;
-  border: 2px solid #000000;
-  background-color: transparent;
-  transition: background-color 1s, color 1s, transform 1s;
+  color: white;
+  font-family: 'Titillium Web', sans-serif;
+  background-color: #5AA6ED;
+  font-size: 17px;
+  height: 50px;
+  width: 90%;
+ 
 }
-.start-button{
-	background-color: yellow;
-	font-size: 27px;
-	height: 50px;
-	width: 90%;
+.learn-more-button{
+	background-color: black;
+	width: 200px;
 }
-.start-button:hover{
-  background-color: #339933;
-  transform: none;
-
+.intro{
+	margin-bottom: 5%;
+	color: #C8C8C8;
+	margin-bottom: 40px;	
 }
 
  /* Non-mobile */
-@media only screen and (min-width: 640px) {
-.start-button{
-	background-color: tomato;
-	font-size: 27px;
-	width: 200px;
+@media only screen and (min-width: 740px) {
 
-}
-  
+	header{
+		height: 785px;
+		padding-top: 200px;
+	}
+	header p{
+		font-size: 25px;
+	}
+	h1{
+		font-size: 50px;
+	}
+	.button{
+		width: 200px;
+	}
+	.start-button{
+		margin-top: 80px;
+	}
+
+
+	
 }

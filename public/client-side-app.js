@@ -1,10 +1,9 @@
 console.log("hi");
-const PLAYLIST_API_ENDPOINT = 'https://lychee-shortcake-58019.herokuapp.com/api/playlist';
+const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist';
 const PLAYLIST = $('.playlist');
 
 $('.get-button').on('click', event => {
     
-    event.preventDefault();
     PLAYLIST.empty();
     console.log("Making a GET request");
     $.getJSON(PLAYLIST_API_ENDPOINT)
@@ -21,7 +20,7 @@ $('.get-button').on('click', event => {
    	            PLAYLIST.append(
 
    					      ` 
-   					           <h4> ${item.song}  </h4>
+   					          <h4> ${item.song}  </h4>
    					          <p> -- ${item.artist} </p>
 
   					      `
@@ -36,22 +35,18 @@ $('.get-button').on('click', event => {
 });
 
 $('.post-button').on('click', event => {
-  
-    event.preventDefault();
-    console.log("Making a POST request");
-    $.post(PLAYLIST_API_ENDPOINT, JSON.stringify({
-      
+    $.ajax({
+        url: PLAYLIST_API_ENDPOINT,
+        method: 'POST',
+        data: {
             local_id: "010",
-		        song: "Baby One More Time",
-		        genre: "Pop",
-		        artist: "Britney Spears"
-      
-    }))
-    .then(data => {
-      
+            song: "Baby One More Time",
+            genre: "Pop",
+            artist: "Britney Spears"
+        },
+        success: function(data) {
             console.log(data);
-      
+        }
     });
-    
 });
 
