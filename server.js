@@ -16,12 +16,14 @@ const cors = require('cors');
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   next();
 });
 
+app.use('/api/playlist', router)
 app.use(morgan('common'));
 app.use(express.static('public'));
-app.use('/api/playlist', router)
+
  
 let server;
 
@@ -33,7 +35,7 @@ function runServer(databaseUrl, port = PORT) {
         return reject(err);
       }
       server = app.listen(port, () => {
-        console.log(`Your app is listening on port ${port} --April 6th, 2018`);
+        console.log(`Your app is listening on port ${port} --April 2018`);
         resolve();
       })
         .on('error', err => {

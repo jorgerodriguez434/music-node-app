@@ -9,11 +9,14 @@
 </head>
 <body>
 
+
   <header role="banner">
 	    <h1> Transitive </h1>
 	    <p class="intro"> A full responsive, business-oriented HTML5/CSS3 template built by <span class="white">Templated </span> and released under the <span class="white">Creative Commons.</span></p>
-	    <button class="button start-button" type="button">GET STARTED</button>
+	     <a href="#A"><button class="button start-button">GET STARTED</button></a>
+
  </header>
+
 
   <main role="main">
   	<section class="content1">
@@ -30,24 +33,34 @@
 		  </div>
     </section>
 
-       <section class="content1">
-	  			
-	  			<h2> <span class="black">Please enter a song and an artist <span></h2>
+       <section class="content1 content-playlist" id="A">
+
+	  			<img src = "https://templated.co/items/demos/transitive/images/pic02.jpg">
+	  			<h2> <span class="black">PLAYLIST CREATOR <span></h2>
+	  			<h3> Click on a button to show playlist, insert a song, delete a song, or just update a song! </h3>
 	  	
 	  		<div class="lorem-content">
 	  			<hr/>
-	  			<form>
-	  				<label for="song-name"> </label>
-	  				<input type="text" id="song-name" name="song" placeholder="Song" class="my-text">
-	  				<label for="get-artist"> </label>
-	  				<input type="text" id="artist-name" name="artist" placeholder="Artist" class="my-text">
-	  				 <button class="button post-button" type="submit">INSERT SONG!</button>
-	  				  <button class="button get-button" type="button">SHOW PLAYLIST!</button>
-	  			</form>
+	  				
+	  			<div class="button-group">
+	  				 <a href="#A01"><button class="button get-button">SHOW PLAYLIST</button></a>
+
+	  				  <a href="file:///Users/jorgerodriguez/projects/music-node-app/public/post.html"><button class="button post-button">INSERT NEW SONG</button></a>
+
+	  				   <a href="file:///Users/jorgerodriguez/projects/music-node-app/public/delete.html"><button class="button post-button">DELETE</button></a>
+
+	  				   <a href="file:///Users/jorgerodriguez/projects/music-node-app/public/update.html"><button class="button post-button">UPDATE A SONG</button></a>
+
+	  			
+	  			</div>
+	  				   <hr/>
+
+	  				  <div class="playlist" id="A01">  </div>
+
 	  		</div>
 
-	  			<p> Playlist: </p>
-      	  <div class="playlist">  </div>
+
+      	  
 		
     </section>
 

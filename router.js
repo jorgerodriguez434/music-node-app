@@ -5,7 +5,8 @@ const { PlayList } = require('./models');
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const formParser = bodyParser.urlencoded();
+const formParser = bodyParser.urlencoded({ extended: true });
+
 router.get('/', (req, res) => {
 
       console.log('making a GET request');
@@ -44,11 +45,12 @@ router.delete('/:id', (req, res) => {
 				console.log(item);
 				res.json(item);
 				res.status(200).end();
-		});
+		})
+		.catch(err => console.log(err));
 
 });
 
-router.put('/:id', jsonParser, (req, res) => {
+router.put('/:id', formParser, (req, res) => {
 
 		console.log('making a PUT request')
 		PlayList.findByIdAndUpdate(req.params.id, 

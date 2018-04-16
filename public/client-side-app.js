@@ -1,5 +1,6 @@
-console.log("hi");
+console.log("hi, from client-side-app!");
 const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist';
+const ID_ENDPOINT = 'http://localhost:8080/api/playlist/:id'
 const PLAYLIST = $('.playlist');
 
 $('.get-button').on('click', event => {
@@ -14,14 +15,23 @@ $('.get-button').on('click', event => {
             console.log("There are no songs!");
             PLAYLIST.text("Error: There are no songs!");
           } 
-          
+          PLAYLIST.append(
+
+                  `
+                     <h2> <span class="black">PLAYLIST <span></h2>
+                  `
+
+            )
 	 	      data.map(item => {
 		
    	            PLAYLIST.append(
 
-   					      ` 
+   					      `   
    					          <h4> ${item.song}  </h4>
-   					          <p> -- ${item.artist} </p>
+   					          <ul> 
+                          <li> Artist: ${item.artist} </li>
+                          <li> Song: ${item.song} </li>
+                          <li> ID: ${item._id}  </li>
 
   					      `
    			        );
@@ -34,16 +44,16 @@ $('.get-button').on('click', event => {
     
 });
 
-$('.post-button').on('click', event => {
+$('.confirm-post-button').on('click', event => {
 
-    const userSong = document.getElementById("song-name").value;
-    const userArtist = document.getElementById("artist-name").value;
+    console.log("Making a POST request");
+    const userSong = document.getElementById("song-id").value;
+    const userArtist = document.getElementById("artist-id").value;
 
     $.ajax({
         url: PLAYLIST_API_ENDPOINT,
         method: 'POST',
         data: {
-
             song: userSong,
             genre: "Pop",
             artist: userArtist
@@ -53,4 +63,52 @@ $('.post-button').on('click', event => {
         }
     });
 });
+
+$('.confirm-delete-button').on('click', event => {
+
+    console.log("Making a PUT request");
+    const id = document.getElementById("update-id").value;
+
+    $.ajax({
+        url: `http://localhost:8080/api/playlist/:${id}`,
+        contentType: 'application/json',
+        method: 'DELETE',
+        success: function(data) {
+            console.log(data);
+        }
+    });
+});
+$('.update-button').on('click', event => {
+
+    PLAYLIST.empty();
+    PLAYLIST.append(
+
+            `
+            
+
+              
+            `
+
+
+      );
+  });
+
+$('.confirm-update-button').on('click', event => {
+
+    console.log("Making a PUT request");
+    //const id = document.getElementById("update-id").value;
+
+    $.ajax({
+        url: `http://localhost:8080/api/playlist/:5ad1dd1c6aec272c2e5f6054`,
+        contentType: 'application/json',
+        method: 'PUT',
+        data: {
+            artist: "Changing name again"
+        },
+        success: function(data) {
+            console.log(data);
+        }
+    });
+});
+
 
