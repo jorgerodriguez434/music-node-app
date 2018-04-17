@@ -64,6 +64,13 @@ label {
 a{
 	text-decoration: none;
 }
+#local-id{
+	text-align: left;
+	color: black;
+}
+.add-border{
+	border: 2px solid black;
+}
 .side-bar{
 	width: 250px;
 	height: 700px;
@@ -83,7 +90,11 @@ a{
 .playlist{
   color: gray;
   font-size: 20px;
-  height: 500px;
+  text-align: center;
+ }
+ .playlist img{
+ 	width: 300px;
+ 	height: 250px;
  }
  .button-group{
  	margin-bottom: 200px;

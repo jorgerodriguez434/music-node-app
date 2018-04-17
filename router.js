@@ -24,8 +24,9 @@ router.post('/', formParser, (req, res) => {
 
                       local_id: count,
                       song: req.body.song,
+                      artist: req.body.artist,
                       genre: req.body.genre,
-                      artist: req.body.artist
+                      imageUrl: req.body.imageUrl
 
 
         }).then(data => {
@@ -41,12 +42,14 @@ router.delete('/:id', (req, res) => {
 		console.log('making a DELETE request');
 		//need to target a specific item
 		PlayList.findByIdAndRemove(req.params.id)
-		.then(item => {
-				console.log(item);
-				res.json(item);
+		.then( song => {
+			
+				console.log(song);
+				res.json(song);
 				res.status(200).end();
 		})
 		.catch(err => console.log(err));
+
 
 });
 
@@ -62,10 +65,10 @@ router.put('/:id', formParser, (req, res) => {
 													}
 												}, 
 												{ new: true } )
-		.then(item => {
+		.then(song => {
 
-				console.log(item);
-				res.json(item);
+				console.log(song);
+				res.json(song);
 				res.status(200).end();
 
 		});

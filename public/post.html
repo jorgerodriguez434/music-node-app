@@ -9,25 +9,35 @@
 <body>
 
 
+  <main role="main">
 	 <section class="content1 post-content">
 
 	  			<img src = "https://templated.co/items/demos/transitive/images/pic02.jpg">
 	  			<h2> <span class="black">INSERT<span></h2>
 
+			<div class="lorem-content">
+	  			<hr/>
               <form>
                   <input type="text" id="song-id" name="song" placeholder="Song" class="my-text" required>
-                  <input type="text" id="artist-id" name="artist" placeholder="Artist" class="my-text" required>
-                  <p> Please enter a song and an artist </p>
-                  <button class="button confirm-post-button" type="submit">ADD SONG</button>
+                 <input type="text" id="artist-id" name="artist" placeholder="Artist" class="my-text" required>
+                 <input type="text" id="genre-id" name="genre" placeholder="Genre" class="my-text" required>
+                 <input type="text" id="image-url-id" name="image-url" placeholder="Image URL" class="my-text" required>
+                  <p class="js-insert"> Enter a song and an artist along with a genre and and a url image </p>
+                  <button class="button add-song-button" type="submit">ADD SONG</button>
                   
               </form>
 
               <a href="file:///Users/jorgerodriguez/projects/music-node-app/public/index.html"><button class="button home-button">HOME</button></a>
 
+              <a href="file:///Users/jorgerodriguez/projects/music-node-app/public/index.html#A"><button class="button back-button">BACK</button></a>
 
+
+
+            </div>
       	  
 		
     </section>
+  </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="client-side-app.js"></script>

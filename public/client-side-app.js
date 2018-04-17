@@ -1,7 +1,23 @@
 console.log("hi, from client-side-app!");
 const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist';
-const ID_ENDPOINT = 'http://localhost:8080/api/playlist/:id'
 const PLAYLIST = $('.playlist');
+
+function remove(id) {
+    for (let i = 0; i < list.length; i += 1) {
+        const fruit = list[i];
+        if (id === fruit.id) {
+            list.splice(i, 1);
+        }
+    }
+    //render();
+}
+
+function handleRemove() {
+    PLAYLIST.on('click', 'div button', function() {
+        const id = $(this).parent().val();
+        remove(id);
+    });
+}
 
 $('.get-button').on('click', event => {
     
@@ -15,91 +31,98 @@ $('.get-button').on('click', event => {
             console.log("There are no songs!");
             PLAYLIST.text("Error: There are no songs!");
           } 
-          PLAYLIST.append(
-
-                  `
-                     <h2> <span class="black">PLAYLIST <span></h2>
-                  `
-
-            )
 	 	      data.map(item => {
 		
    	            PLAYLIST.append(
 
    					      `   
-   					          <h4> ${item.song}  </h4>
-   					          <ul> 
-                          <li> Artist: ${item.artist} </li>
-                          <li> Song: ${item.song} </li>
-                          <li> ID: ${item._id}  </li>
+                      <h4  ${item.song} </h4> 
+                      <p> ${item.artist} </p>
+                      <p> ${item.genre} </p>
+                      <img src=${item.imageUrl}>
+                      <div id="${item._id}"> 
+                          <button class="button remove-button"> Remove </button>
+                      </div>
 
   					      `
    			        );
 
+                console.log(item._id)
+
   	      });  
-
-
    })
    .catch(err => console.log(err)); 
     
 });
 
-$('.confirm-post-button').on('click', event => {
+
+PLAYLIST.on('click', 'div button', event => {
+
+    console.log("Trying to remove");
+    event.preventDefault();
+    console.log("Making a DELETE request");
+    const id = $(this).parent().val();
+    console.log(id);
+    $.ajax({
+        url: `http://localhost:8080/api/playlist/${id}`,
+        method: 'DELETE',
+        success: function(data) {
+            console.log(data);
+        }
+    });
+
+});
+
+$('.add-song-button').on('click', event => {
 
     console.log("Making a POST request");
-    const userSong = document.getElementById("song-id").value;
-    const userArtist = document.getElementById("artist-id").value;
+    const userSong = $("#song-id").val();
+    const userArtist = $("#artist-id").val();
+    const userGenre = $("#genre-id").val();
+    const userImageUrl = $("#image-url-id").val();
 
     $.ajax({
         url: PLAYLIST_API_ENDPOINT,
         method: 'POST',
         data: {
             song: userSong,
-            genre: "Pop",
-            artist: userArtist
+            genre: userGenre,
+            artist: userArtist,
+            imageUrl: userImageUrl
         },
         success: function(data) {
             console.log(data);
+            $('.js-insert').text('You have successfully added a song!');
+        },
+        error: function(err) {
+          console.log(err);
         }
     });
 });
 
-$('.confirm-delete-button').on('click', event => {
+$('.confirm-delete-button').click(event => {
 
-    console.log("Making a PUT request");
-    const id = document.getElementById("update-id").value;
+    event.preventDefault();
+    console.log("Making a DELETE request");
 
+    const id = $('#delete-id').val();    
+    console.log(id);
     $.ajax({
-        url: `http://localhost:8080/api/playlist/:${id}`,
-        contentType: 'application/json',
+        url: `http://localhost:8080/api/playlist/${id}`,
         method: 'DELETE',
         success: function(data) {
             console.log(data);
         }
     });
 });
-$('.update-button').on('click', event => {
-
-    PLAYLIST.empty();
-    PLAYLIST.append(
-
-            `
-            
-
-              
-            `
-
-
-      );
-  });
 
 $('.confirm-update-button').on('click', event => {
 
     console.log("Making a PUT request");
-    //const id = document.getElementById("update-id").value;
+    const id = $('#update-id').val();
 
     $.ajax({
-        url: `http://localhost:8080/api/playlist/:5ad1dd1c6aec272c2e5f6054`,
+        url: `http://localhost:8080/api/playlist/${id}`,
         contentType: 'application/json',
         method: 'PUT',
         data: {
@@ -107,6 +130,9 @@ $('.confirm-update-button').on('click', event => {
         },
         success: function(data) {
             console.log(data);
+        },
+        error: function(err) {
+          console.log(err);
         }
     });
 });
