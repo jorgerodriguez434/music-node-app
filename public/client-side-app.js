@@ -2,26 +2,7 @@ console.log("hi, from client-side-app!");
 const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist';
 const PLAYLIST = $('.playlist');
 
-function remove(id) {
-    for (let i = 0; i < list.length; i += 1) {
-        const fruit = list[i];
-        if (id === fruit.id) {
-            list.splice(i, 1);
-        }
-    }
-    //render();
-}
 
-function handleRemove() {
-    PLAYLIST.on('click', 'div button', function() {
-        const id = $(this).parent().val();
-        remove(id);
-    });
-}
-
-$('.get-button').on('click', event => {
-    
-    PLAYLIST.empty();
     console.log("Making a GET request");
     $.getJSON(PLAYLIST_API_ENDPOINT)
     .then(data => {
@@ -29,20 +10,19 @@ $('.get-button').on('click', event => {
           console.log(data);
           if(data.length === 0){
             console.log("There are no songs!");
-            PLAYLIST.text("Error: There are no songs!");
+            PLAYLIST.text("Please insert a song to playlist!");
           } 
 	 	      data.map(item => {
 		
    	            PLAYLIST.append(
 
-   					      `   
-                      <h4  ${item.song} </h4> 
+   					      ` <div data-id="${item._id}"> 
+                      <h4>  ${item.song} </h4> 
                       <p> ${item.artist} </p>
                       <p> ${item.genre} </p>
-                      <img src=${item.imageUrl}>
-                      <div id="${item._id}"> 
-                          <button class="button remove-button"> Remove </button>
-                      </div>
+                      <button class="button remove-button"> Remove </button>
+                    </div>
+                      <hr/>
 
   					      `
    			        );
@@ -52,24 +32,26 @@ $('.get-button').on('click', event => {
   	      });  
    })
    .catch(err => console.log(err)); 
-    
-});
 
 
-PLAYLIST.on('click', 'div button', event => {
+PLAYLIST.on('click', 'div button', function(event) {
 
-    console.log("Trying to remove");
-    event.preventDefault();
     console.log("Making a DELETE request");
-    const id = $(this).parent().val();
-    console.log(id);
+    event.preventDefault();
+    const id = $(this).parent().attr('data-id');
+    const self = this;
+    console.log(self);
+    console.log(`${id} :This should be the current ID`);
     $.ajax({
         url: `http://localhost:8080/api/playlist/${id}`,
         method: 'DELETE',
         success: function(data) {
-            console.log(data);
+            console.log('Data has been deleted');
+            //.then(removeFromUI);
+            $(self).parent().remove();
         }
     });
+
 
 });
 
@@ -88,7 +70,6 @@ $('.add-song-button').on('click', event => {
             song: userSong,
             genre: userGenre,
             artist: userArtist,
-            imageUrl: userImageUrl
         },
         success: function(data) {
             console.log(data);
@@ -114,6 +95,7 @@ $('.confirm-delete-button').click(event => {
             console.log(data);
         }
     });
+
 });
 
 $('.confirm-update-button').on('click', event => {

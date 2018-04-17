@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
 
 let count = 0;
 router.post('/', formParser, (req, res) => {
+
 		console.log(req.body);
         console.log('making a POST request');
         count++;
@@ -26,12 +27,11 @@ router.post('/', formParser, (req, res) => {
                       song: req.body.song,
                       artist: req.body.artist,
                       genre: req.body.genre,
-                      imageUrl: req.body.imageUrl
 
 
         }).then(data => {
           
-          PlayList.findById(data._id, (error, song) => res.status(201).json(song));
+          PlayList.findById(data._id, (error, song) => res.status(201).json(song.serialize()));
           
         }).catch(err => console.log(err));
 

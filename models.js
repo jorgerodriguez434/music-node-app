@@ -7,11 +7,19 @@ const PlayListSchema =  mongoose.Schema({
 	song: String,
 	artist: String,
 	genre: String,
-	imageUrl: String,
 	created: {type: Date, default: Date.now}
 
 
 });
+
+PlayListSchema.methods.serialize = function() {
+  return {
+    
+    song: this.song,
+    artist: this.artist,
+    genre: this.genre,
+  };
+};
 
 const PlayList = mongoose.model('PlayList', PlayListSchema);
 
