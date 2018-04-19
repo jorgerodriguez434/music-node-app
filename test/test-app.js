@@ -92,19 +92,6 @@ describe ('Music App', function() {
 
 	});
 
-	it ('should delete and return deleted json object on DELETE request', function() {
-
-			return chai
-					   .request(app)
-					   .delete('/api/playlist/5ac532ba041f6850c1157c7a')
-					   .then(function (res) {
-
-					   		expect(res).to.be.json;
-
-					   });
-
-	});
-
 	it ('should return a 200 status code on PUT request', function() {
 
 			return chai
@@ -123,9 +110,17 @@ describe ('Music App', function() {
 			return chai
 					   .request(app)
 					   .put('/api/playlist/5ac532ba041f6850c1157c7a')
+					   .send({
+
+					   		local_id: "003",
+		              		song: "When Doves Cry",
+		             	    artist: "Prince"
+
+					   })
 					   .then(function (res) {
 
 					   		expect(res).to.be.json;
+					   		expect(res.body).to.not.be.null;
 
 					   });
 

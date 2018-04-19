@@ -13,11 +13,13 @@ const PlayListSchema =  mongoose.Schema({
 });
 
 PlayListSchema.methods.serialize = function() {
+	
   return {
     
     song: this.song,
     artist: this.artist,
     genre: this.genre,
+
   };
 };
 

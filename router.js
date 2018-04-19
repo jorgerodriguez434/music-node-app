@@ -43,9 +43,7 @@ router.delete('/:id', (req, res) => {
 		//need to target a specific item
 		PlayList.findByIdAndRemove(req.params.id)
 		.then( song => {
-			
-				console.log(song);
-				res.json(song);
+		
 				res.status(200).end();
 		})
 		.catch(err => console.log(err));
@@ -56,22 +54,28 @@ router.delete('/:id', (req, res) => {
 router.put('/:id', formParser, (req, res) => {
 
 		console.log('making a PUT request')
-		PlayList.findByIdAndUpdate(req.params.id, 
+		const id = req.params.id;
+		console.log(id);
+		console.log(req.body);
+		PlayList.findByIdAndUpdate(id, 
 												{ 
 													$set:
-													{
-														song: `${req.body.song}`,
-														artist: `${req.body.artist}`
+													{	
+														song: req.body.song,
+														artist: req.body.artist,
+														genre: req.body.genre
 													}
 												}, 
 												{ new: true } )
-		.then(song => {
+		.then(data => {
+          PlayList.findById(id, (error, song) => {
 
-				console.log(song);
-				res.json(song);
-				res.status(200).end();
+          	console.log(song);
+          	res.status(200).json(song);
 
-		});
+          });
+          
+        }).catch(err => console.log(err));
 
 });
 
