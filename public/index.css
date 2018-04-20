@@ -64,7 +64,9 @@ label {
 a{
 	text-decoration: none;
 }
-
+.added-song-message{
+	display: none;
+}
 #local-id{
 	text-align: left;
 	color: black;
