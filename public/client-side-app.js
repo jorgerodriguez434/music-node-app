@@ -59,32 +59,42 @@ PLAYLIST.on('click', '.remove-button', function(event) {
 
 }); 
 
-function update() {
 
-  
-  const song = $('.song').text();
-  const artist = $('.artist').text();
-  const genre = $('.genre').text();
-  $('.remove-button').hide();
+function update(selfButton) {
+  /*var div = $(this).parent();
+    console.log(`${this}: from update function`);
+    var song = div.find('h1').text(); */
+  console.log(selfButton);
+  console.log('from update function, should be a button')
+  const currentDiv = $(selfButton).parent();
+  console.log(currentDiv);
+  const song = currentDiv.find('.song').text();
+  const artist = currentDiv.find('.artist').text();
+  const genre = currentDiv.find('.genre').text();
+  currentDiv.find('.remove-button').hide();
  
-  $('.current-song').append(`
-    <form id="F" class="song-form">
+  currentDiv.append(`
+    <form class="song-form">
       <input class="input-song" type="text" value="${song}"> 
       <input class="input-artist" type="text" value="${artist}">
       <input class="input-genre" type="text" value="${genre}"> 
     </form>
 `);
   
-  $('.update-button').text('CONFIRM');  
+  currentDiv.find('.update-button').text('CONFIRM');  
 }
 
 function confirm() {
+
   const currentDiv = $(this).parent();
-  const userSong = $('.input-song').val();
-  const userArtist = $('.input-artist').val();
-  const userGenre = $('.input-genre').val();
+  console.log('this is coming form confirm function');
+  console.log(currentDiv)
+  const userSong = currentDiv.find('.input-song').val();
+  const userArtist = currentDiv.find('.input-artist').val();
+  const userGenre = currentDiv.find('.input-genre').val();
   const that = $(this);
   console.log("Making a PUT request");
+  console.log(id+" ------------coming from confirm-----------")
   $.ajax({
         url: `http://localhost:8080/api/playlist/${id}`,
         method: 'PUT',
@@ -98,12 +108,12 @@ function confirm() {
             console.log(id)
             console.log(data);
             console.log('SUCCESS!');
-            $('.song').text(userSong);
-            $('.artist').text(userArtist);
-            $('.genre').text(userGenre);
-            $('.update-button').text('UPDATE SONG');
-            $('.song-form').remove();
-            $('.remove-button').show();
+            currentDiv.find('.song').text(userSong);
+            currentDiv.find('.artist').text(userArtist);
+            currentDiv.find('.genre').text(userGenre);
+            currentDiv.find('.update-button').text('UPDATE SONG');
+            currentDiv.find('.song-form').remove();
+            currentDiv.find('.remove-button').show();
             that.off();
             //continue here
         },
@@ -113,20 +123,37 @@ function confirm() {
     });
 
 }
+//$('div button').click(update);
 
 let id= "no entry"
 PLAYLIST.on('click', '.update-button', function(event) {
 
     console.log("Update button has been clicked");
     id = $(this).parent().attr('data-id');
-    const self = this;
+    const selfButton = this;
     console.log(self);
     console.log(`${id} :This should be the current ID`);
     //continue from here
-    update();
-    $(self).off();
-     console.log(self);
-    $(self).click(confirm);
+    /* 
+
+        this says:
+        From the beginning:
+            When I click on an update button,
+            take the id from that current button,
+            and also take the element with you
+        Now for the fun part
+        This is what follows next
+        1. self is the button that was clicked on
+        2. call update function
+        3. Turn off self button
+        4. Turn on self button, and when clicked on, it calls confirm function
+
+    */
+   // $(self).click(update); 
+    update(selfButton);
+    $(selfButton).off();
+     console.log(self+" this is coming from the PLAYLIST");
+    $(selfButton).click(confirm);
 
 });
 
