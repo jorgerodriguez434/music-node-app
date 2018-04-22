@@ -1,5 +1,5 @@
 console.log("hi, from client-side-app!");
-const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist';
+const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist/';
 const PLAYLIST = $('.playlist');
 
 function fetch () {
@@ -35,9 +35,8 @@ function render(data) {
                    <hr/>
   					      `
    			    );
-                console.log(item._id);
 
-            });  
+        });  
 }
 
 PLAYLIST.on('click', '.remove-button', function(event) {
@@ -48,7 +47,7 @@ PLAYLIST.on('click', '.remove-button', function(event) {
     const self = this;
 
     $.ajax({
-        url: `http://localhost:8080/api/playlist/${id}`,
+        url: `${PLAYLIST_API_ENDPOINT}${id}`,
         method: 'DELETE',
         success: function(data) {
             console.log('Data has been deleted');
@@ -60,11 +59,8 @@ PLAYLIST.on('click', '.remove-button', function(event) {
 }); 
 
 
-function update(selfButton, currentDiv) {
+function update(currentDiv) {
 
-  console.log(selfButton);
-  console.log('from update function, should be a button')
-  //const currentDiv = $(selfButton).parent();
   console.log(currentDiv);
   const song = currentDiv.find('.song').text();
   const artist = currentDiv.find('.artist').text();
@@ -81,20 +77,18 @@ function update(selfButton, currentDiv) {
     </form>
   `);
   
-  //currentDiv.find('.update-button').text('CONFIRM');  
+
 }
 
-function confirm(currentDiv) {
+function confirm(id, currentDiv) {
 
-  //const currentDiv = $(this).parent();
   console.log(currentDiv);
   const userSong = currentDiv.find('.input-song').val();
   const userArtist = currentDiv.find('.input-artist').val();
   const userGenre = currentDiv.find('.input-genre').val();
-  const that = $(this);
  
   $.ajax({
-        url: `http://localhost:8080/api/playlist/${id}`,
+        url: `${PLAYLIST_API_ENDPOINT}${id}`,
         method: 'PUT',
         data: {
 
@@ -115,8 +109,6 @@ function confirm(currentDiv) {
             currentDiv.find('.song-form').remove();
             currentDiv.find('.remove-button').show();
             currentDiv.find('.update-button').show();
-            that.off();
-
         },
         error: function(err) {
           console.log(err);
@@ -125,20 +117,16 @@ function confirm(currentDiv) {
 
 }
 
-let id= "no entry"
 PLAYLIST.on('click', '.update-button', function(event) {
 
-    console.log("Update button has been clicked");
-    id = $(this).parent().attr('data-id');
-    const selfButton = this; //this= .update-button
-    const currentDiv = $(this).parent();
-    update(selfButton, currentDiv);
-    //$(selfButton).off();
-     console.log(self+" this is coming from the PLAYLIST");
+    console.log("update-button has been clicked");
+    const thisID = $(this).parent().attr('data-id');
+    const thisDiv = $(this).parent();
+
+    update(thisDiv);
     $('.confirm-button').click(function () {
-
-                    confirm(currentDiv);
-
+                    console.log('confirm-button has been clicked!')
+                    confirm(thisID, thisDiv);
     });
 
 
