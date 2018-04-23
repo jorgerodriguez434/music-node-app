@@ -2,7 +2,7 @@ console.log("hi, from client-side-app!");
 const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist/';
 const PLAYLIST = $('.playlist');
 
-function fetch () {
+function fetch() {
 
    console.log("Making a GET request");
    $.getJSON(PLAYLIST_API_ENDPOINT)
@@ -35,7 +35,7 @@ function render(data) {
                    <hr/>
   					      `
    			    );
-
+              
         });  
 }
 
@@ -51,37 +51,25 @@ PLAYLIST.on('click', '.remove-button', function(event) {
                     console.log('yes-button has been clicked!')
                     yes(thisID, thisDiv);
                     
-
     });
 
-             /* 
-   $('.yes-button').click(function () {
-                    console.log('yes-button has been clicked!')
-                    yes(thisID, thisDive);
-                             
-                    $('.no-button').click(function () {
-                    console.log('no-button has been clicked!')
-                    no(thisID, thisDiv);
-                    */
-
-    
+    $('.cancel-button').click(function () {
+                    console.log('cancel-button has been clicked!')
+                    cancel(thisDiv);
+    });
 
 }); 
 
-function remove (currentDiv) {
+function remove(currentDiv) {
 
     currentDiv.find('.remove-button').hide();
     currentDiv.find('.update-button').hide();
     currentDiv.append(`
 
-              <p> Are you sure you want to remove this song? </p>
+              <p class="are-you-sure-text"> Are you sure you want to remove this song? </p>
               <button class="button yes-button">YES</button></a>
-              <button class="button no-button">NO</button></a>
-              
-
+              <button class="button cancel-button">CANCEL</button></a>
       `)
-
-
 }
 
 function update(currentDiv) {
@@ -95,10 +83,11 @@ function update(currentDiv) {
  
   currentDiv.append(`
     <form class="song-form">
-      <input class="input-song" type="text" value="${song}"> 
-      <input class="input-artist" type="text" value="${artist}">
-      <input class="input-genre" type="text" value="${genre}"> 
+      <input class="input-song my-text" type="text" value="${song}" placeholder="Song"> 
+      <input class="input-artist my-text" type="text" value="${artist}" placeholder="Artist">
+      <input class="input-genre my-text" type="text" value="${genre}" placeholder="Genre"> 
       <button class="button confirm-button">CONFIRM</button></a>
+      <button class="button cancel-button">CANCEL</button></a>
     </form>
   `);
   
@@ -156,9 +145,14 @@ function yes(id, currentDiv) {
 
 }
 
-function no () {
+function cancel(currentDiv) {
 
-    //
+    $('.are-you-sure-text').text("");
+    currentDiv.find('.song-form').remove();
+    currentDiv.find('.yes-button').hide();
+    currentDiv.find('.cancel-button').hide();
+    currentDiv.find('.remove-button').show();
+    currentDiv.find('.update-button').show();
 
 }
 
@@ -172,10 +166,12 @@ PLAYLIST.on('click', '.update-button', function(event) {
     $('.confirm-button').click(function () {
                     console.log('confirm-button has been clicked!')
                     confirm(thisID, thisDiv);
-                    
-
     });
 
+    $('.cancel-button').click(function () {
+                    console.log('cancel-button has been clicked!')
+                    cancel(thisDiv);
+    });
 
 });
 
@@ -205,4 +201,5 @@ $('.add-song-button').on('click', function (event) {
 
 });
 
+PLAYLIST.text("Internal Error: Server not running");
 fetch();

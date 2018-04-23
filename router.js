@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { PlayList } = require('./models');
+const { Playlist } = require('./models');
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
@@ -10,7 +10,7 @@ const formParser = bodyParser.urlencoded({ extended: true });
 router.get('/', (req, res) => {
 
       console.log('making a GET request');
-      PlayList.find()
+      Playlist.find()
       .then(playlist => res.status(200).json(playlist));
 
 });
@@ -18,21 +18,28 @@ router.get('/', (req, res) => {
 let count = 0;
 router.post('/', formParser, (req, res) => {
 
+		const requiredFields = ['song', 'artist', 'genre'];
+		
+		 /*for (let i = 0; i < requiredFields.length; i++) {
+    		const field = requiredFields[i];
+    		if (!(field in req.body)) {
+      			const message = `Missing \`${field}\` in request body`;
+      			console.error(message);
+      			return res.status(400).send(message);
+    		}
+  		} */
+
 		console.log(req.body);
         console.log('making a POST request');
-        count++;
-        PlayList.create({
+        Playlist.create({
 
-                      local_id: count,
                       song: req.body.song,
                       artist: req.body.artist,
                       genre: req.body.genre,
 
 
         }).then(data => {
-          
-          PlayList.findById(data._id, (error, song) => res.status(201).json(song.serialize()));
-          
+          Playlist.findById(data._id, (error, song) => res.status(201).json(song.serialize()));
         }).catch(err => console.log(err));
 
 });
@@ -40,8 +47,7 @@ router.post('/', formParser, (req, res) => {
 router.delete('/:id', (req, res) => {
 
 		console.log('making a DELETE request');
-		//need to target a specific item
-		PlayList.findByIdAndRemove(req.params.id)
+		Playlist.findByIdAndRemove(req.params.id)
 		.then( song => {
 		
 				res.status(200).end();
@@ -55,9 +61,7 @@ router.put('/:id', formParser, (req, res) => {
 
 		console.log('making a PUT request')
 		const id = req.params.id;
-		console.log(id);
-		console.log(req.body);
-		PlayList.findByIdAndUpdate(id, 
+		Playlist.findByIdAndUpdate(id, 
 												{ 
 													$set:
 													{	
@@ -68,11 +72,8 @@ router.put('/:id', formParser, (req, res) => {
 												}, 
 												{ new: true } )
 		.then(data => {
-          PlayList.findById(id, (error, song) => {
-
-          	console.log(song);
-          	res.status(200).json(song);
-
+          Playlist.findById(id, (error, song) => {
+	          	res.status(200).json(song);
           });
           
         }).catch(err => console.log(err));

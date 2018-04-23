@@ -1,18 +1,16 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-const PlayListSchema =  mongoose.Schema({
+const PlaylistSchema =  mongoose.Schema({
 
-	local_id: String,
 	song: String,
 	artist: String,
 	genre: String,
 	created: {type: Date, default: Date.now}
 
-
 });
 
-PlayListSchema.methods.serialize = function() {
+PlaylistSchema.methods.serialize = function() {
 	
   return {
     
@@ -23,7 +21,7 @@ PlayListSchema.methods.serialize = function() {
   };
 };
 
-const PlayList = mongoose.model('PlayList', PlayListSchema);
+const Playlist = mongoose.model('Playlist', PlaylistSchema);
 
-module.exports = { PlayList };
+module.exports = { Playlist };
 

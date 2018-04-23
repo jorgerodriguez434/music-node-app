@@ -64,6 +64,9 @@ label {
 a{
 	text-decoration: none;
 }
+.red{
+	color: red;
+}
 .added-song-message{
 	display: none;
 }

@@ -65,10 +65,10 @@ describe ('Music App', function() {
 					   .request(app)
 					   .post('/api/playlist')
 					   .send({
-
-					   		local_id: "002",
+					   	
 		              		song: "When Doves Cry",
-		             	    artist: "Prince"
+		             	    artist: "Prince",
+		             	    genre: "Pop"
 
 					   })
 					   .then(function (res) {
@@ -83,7 +83,7 @@ describe ('Music App', function() {
 
 			return chai
 					   .request(app)
-					   .delete('/api/playlist/5ac532ba041f6850c1157c7a')
+					   .delete('/api/playlist/5addb204c085b2b0ed8173c1')
 					   .then(function (res) {
 
 					   		expect(res).to.have.status(200);
@@ -96,7 +96,7 @@ describe ('Music App', function() {
 
 			return chai
 					   .request(app)
-					   .put('/api/playlist/5ac532ba041f6850c1157c7a')
+					   .put('/api/playlist/5addb204c085b2b0ed8173c1')
 					   .then(function (res) {
 
 					   		expect(res).to.have.status(200);
@@ -109,12 +109,12 @@ describe ('Music App', function() {
 
 			return chai
 					   .request(app)
-					   .put('/api/playlist/5ac532ba041f6850c1157c7a')
+					   .put('/api/playlist/5addb204c085b2b0ed8173c1')
 					   .send({
 
-					   		local_id: "003",
 		              		song: "When Doves Cry",
-		             	    artist: "Prince"
+		             	    artist: "Prince",
+		             	    genre: "Pop"
 
 					   })
 					   .then(function (res) {
