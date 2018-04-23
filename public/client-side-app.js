@@ -102,7 +102,7 @@ function confirm(id, currentDiv) {
   const userGenre = currentDiv.find('.input-genre').val();
  
   $.ajax({
-        url: `${PLAYLIST_API_ENDPOINT}${id}`,
+        url: `${PLAYLIST_API_ENDPOINT}/${id}`,
         method: 'PUT',
         data: {
 
@@ -135,7 +135,7 @@ function yes(id, currentDiv) {
     console.log("Making a DELETE request");
 
     $.ajax({
-        url: `${PLAYLIST_API_ENDPOINT}${id}`,
+        url: `${PLAYLIST_API_ENDPOINT}/${id}`,
         method: 'DELETE',
         success: function(data) {
             console.log('Data has been deleted');
