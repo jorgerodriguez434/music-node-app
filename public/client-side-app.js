@@ -14,7 +14,6 @@ function fetch() {
 function render(data) {
 
   PLAYLIST.empty();
-  console.log(data);
   if(data.length === 0){
             console.log("There are no songs!");
             PLAYLIST.text("Please insert a song to playlist!");
@@ -41,20 +40,16 @@ function render(data) {
 
 PLAYLIST.on('click', '.remove-button', function(event) {
 
-    console.log('remove-button has been clicked')
     event.preventDefault();
     const thisID = $(this).parent().attr('data-id');
     const thisDiv = $(this).parent();
 
     remove(thisDiv);
     $('.yes-button').click(function () {
-                    console.log('yes-button has been clicked!')
-                    yes(thisID, thisDiv);
-                    
+                    yes(thisID, thisDiv);         
     });
 
     $('.cancel-button').click(function () {
-                    console.log('cancel-button has been clicked!')
                     cancel(thisDiv);
     });
 
@@ -73,8 +68,7 @@ function remove(currentDiv) {
 }
 
 function update(currentDiv) {
-
-  console.log(currentDiv);
+  
   const song = currentDiv.find('.song').text();
   const artist = currentDiv.find('.artist').text();
   const genre = currentDiv.find('.genre').text();
@@ -96,7 +90,6 @@ function update(currentDiv) {
 
 function confirm(id, currentDiv) {
 
-  console.log(currentDiv);
   const userSong = currentDiv.find('.input-song').val();
   const userArtist = currentDiv.find('.input-artist').val();
   const userGenre = currentDiv.find('.input-genre').val();
@@ -113,8 +106,6 @@ function confirm(id, currentDiv) {
         },
         success: function(data) {
 
-            console.log(id)
-            console.log(data);
             console.log('SUCCESS!');
             currentDiv.find('.song').text(userSong);
             currentDiv.find('.artist').text(userArtist);
@@ -158,18 +149,15 @@ function cancel(currentDiv) {
 
 PLAYLIST.on('click', '.update-button', function(event) {
 
-    console.log("update-button has been clicked");
     const thisID = $(this).parent().attr('data-id');
     const thisDiv = $(this).parent();
 
     update(thisDiv);
     $('.confirm-button').click(function () {
-                    console.log('confirm-button has been clicked!')
                     confirm(thisID, thisDiv);
     });
 
     $('.cancel-button').click(function () {
-                    console.log('cancel-button has been clicked!')
                     cancel(thisDiv);
     });
 
@@ -191,8 +179,7 @@ $('.add-song-button').on('click', function (event) {
             genre: userGenre
         },
         success: function(data) {
-            console.log(data);
-            $('.added-song-message').show();
+                $('.added-song-message').show();
         },
         error: function(err) {
           console.log(err);
