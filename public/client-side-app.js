@@ -41,23 +41,48 @@ function render(data) {
 
 PLAYLIST.on('click', '.remove-button', function(event) {
 
-    console.log("Making a DELETE request");
+    console.log('remove-button has been clicked')
     event.preventDefault();
-    const id = $(this).parent().attr('data-id');
-    const self = this;
+    const thisID = $(this).parent().attr('data-id');
+    const thisDiv = $(this).parent();
 
-    $.ajax({
-        url: `${PLAYLIST_API_ENDPOINT}${id}`,
-        method: 'DELETE',
-        success: function(data) {
-            console.log('Data has been deleted');
-            $(self).parent().remove();
-            $('.deleted-text').text('Song has been deleted')
-        }
+    remove(thisDiv);
+    $('.yes-button').click(function () {
+                    console.log('yes-button has been clicked!')
+                    yes(thisID, thisDiv);
+                    
+
     });
+
+             /* 
+   $('.yes-button').click(function () {
+                    console.log('yes-button has been clicked!')
+                    yes(thisID, thisDive);
+                             
+                    $('.no-button').click(function () {
+                    console.log('no-button has been clicked!')
+                    no(thisID, thisDiv);
+                    */
+
+    
 
 }); 
 
+function remove (currentDiv) {
+
+    currentDiv.find('.remove-button').hide();
+    currentDiv.find('.update-button').hide();
+    currentDiv.append(`
+
+              <p> Are you sure you want to remove this song? </p>
+              <button class="button yes-button">YES</button></a>
+              <button class="button no-button">NO</button></a>
+              
+
+      `)
+
+
+}
 
 function update(currentDiv) {
 
@@ -105,7 +130,6 @@ function confirm(id, currentDiv) {
             currentDiv.find('.song').text(userSong);
             currentDiv.find('.artist').text(userArtist);
             currentDiv.find('.genre').text(userGenre);
-            currentDiv.find('.update-button').text('UPDATE SONG');
             currentDiv.find('.song-form').remove();
             currentDiv.find('.remove-button').show();
             currentDiv.find('.update-button').show();
@@ -114,6 +138,27 @@ function confirm(id, currentDiv) {
           console.log(err);
         }
     });
+
+}
+
+function yes(id, currentDiv) {
+
+    console.log("Making a DELETE request");
+
+    $.ajax({
+        url: `${PLAYLIST_API_ENDPOINT}${id}`,
+        method: 'DELETE',
+        success: function(data) {
+            console.log('Data has been deleted');
+            currentDiv.text('Song has been deleted!')
+        }
+    });
+
+}
+
+function no () {
+
+    //
 
 }
 
@@ -127,6 +172,8 @@ PLAYLIST.on('click', '.update-button', function(event) {
     $('.confirm-button').click(function () {
                     console.log('confirm-button has been clicked!')
                     confirm(thisID, thisDiv);
+                    
+
     });
 
 
