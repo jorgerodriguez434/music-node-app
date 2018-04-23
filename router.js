@@ -15,10 +15,18 @@ router.get('/', (req, res) => {
 
 });
 
-let count = 0;
 router.post('/', formParser, (req, res) => {
 
-		const requiredFields = ['song', 'artist', 'genre'];
+		const {song, genre, artist} = req.body
+		const isAnyPropertyMissing = !song || !genre || !artist;
+
+		if(isAnyPropertyMissing) {
+				console.log('All fields are required!')
+  				return res.status(400).json({ error: "All fields are required!" });
+		} else {
+  			console.log('data is valid!');
+		}
+
 
 		console.log(req.body);
         console.log('making a POST request');
