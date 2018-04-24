@@ -3,7 +3,7 @@
 A user can create a playlist by adding songs. Upon adding songs, a user can remove or update song. This songs will stay with you wherever you go!
 
 ## Requirements
-* Create a client: app prototype that allows non-technical users to do something interesting or valuable with the API.
+* Create a client prototype that allows non-technical users to do something interesting or valuable with the API.
 * Serve static files: The server, in addition to offering a REST API, will need to serve your client and any other static assets (for instance, images).
 * Implement a REST API with all four CRUD operations.
 * Comprehensive Tests for the API Layer: Each API endpoint should have test coverage.
