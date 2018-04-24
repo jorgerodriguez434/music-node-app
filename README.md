@@ -14,9 +14,7 @@ A user can create a playlist by adding songs. Upon adding songs, a user can remo
 ## Screenshots
 ![image](https://user-images.githubusercontent.com/18128525/39194207-cc4194ac-47a2-11e8-9a32-06630e403276.png)
 ![image](https://user-images.githubusercontent.com/18128525/39194306-0aa27202-47a3-11e8-8fd2-7a1a01919d32.png)
-
-
-
+![image](https://user-images.githubusercontent.com/18128525/39194420-52966334-47a3-11e8-92c1-abaf737f2c1f.png)
 
 ## Technology used
 * JavaScript
