@@ -77,9 +77,14 @@ function update(currentDiv) {
  
   currentDiv.append(`
     <form class="song-form">
-      <input class="input-song my-text" type="text" value="${song}" placeholder="Song"> 
-      <input class="input-artist my-text" type="text" value="${artist}" placeholder="Artist">
-      <input class="input-genre my-text" type="text" value="${genre}" placeholder="Genre"> 
+      <label for="input-song-id">Song</label>
+      <input class="input-song my-text" id="input-song-id" type="text" value="${song}" placeholder="Song"> 
+
+      <label for="input-artist-id">Song</label>
+      <input class="input-artist my-text" id="input-artist-id" type="text" value="${artist}" placeholder="Artist">
+
+      <label for="input-genre-id">Song</label>
+      <input class="input-genre my-text" id="input-genre-id" type="text" value="${genre}" placeholder="Genre"> 
       <button class="button confirm-button">CONFIRM</button></a>
       <button class="button cancel-button">CANCEL</button></a>
     </form>
