@@ -18,10 +18,19 @@ A user can create a playlist by adding songs. Upon adding songs, a user can remo
  ![image](https://user-images.githubusercontent.com/18128525/39194841-25152dd6-47a4-11e8-9ec3-9fe7aa80113d.png)
 
 ## API Documentatiom
-   ### User attributes
-   * Song
-   * Artist
-   * Genre
+   ### Playlist attributes
+   * Song (String)
+   * Artist (String)
+   * Genre (String)
+    ### GET all songs
+   * ${Base url}/api/playlist
+   ### POST a song
+   * ${Base url}/api/playlist
+   * Takes a song, artist, and genere as parameters
+   ### DELETE a song
+   * ${Base url}/api/playlist/${id}
+   ### UPDATE a song
+   * ${Base url}/api/playlist/${id}
 
 ## Technology used
 * JavaScript
