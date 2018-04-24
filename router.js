@@ -17,19 +17,16 @@ router.get('/', (req, res) => {
 
 router.post('/', formParser, (req, res) => {
 
-		const {song, genre, artist} = req.body
+		const {song, genre, artist} = req.body;
 		const isAnyPropertyMissing = !song || !genre || !artist;
 
 		if(isAnyPropertyMissing) {
-				console.log('All fields are required!')
+				console.log('All fields are required!');
   				return res.status(400).json({ error: "All fields are required!" });
-		} else {
-  			console.log('data is valid!');
 		}
 
-
-		console.log(req.body);
         console.log('making a POST request');
+        console.log(req.body);
         Playlist.create({
 
                       song: req.body.song,

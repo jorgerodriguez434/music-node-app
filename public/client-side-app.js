@@ -24,7 +24,7 @@ function render(data) {
    					      ` 
                     <div data-id="${item._id}" class="current-song">
                       
-                        <h4 class="song">  ${item.song} </h4> 
+                        <h2 class="song">  ${item.song} </h2> 
                         <p class="artist"> ${item.artist} </p>
                         <p class="genre"> ${item.genre} </p>
                        <button class="button update-button">UPDATE SONG</button></a>  
