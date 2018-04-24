@@ -12,7 +12,8 @@ A user can create a playlist by adding songs. Upon adding songs, a user can remo
 * Accessibility: The final version of your app must follow a11y best practices.
 
 ## Screenshots
-https://user-images.githubusercontent.com/18128525/39194016-6506729e-47a2-11e8-9f85-fa63b102859b.png
+![image](https://user-images.githubusercontent.com/18128525/39194207-cc4194ac-47a2-11e8-9a32-06630e403276.png)
+
 
 
 ## Technology used
