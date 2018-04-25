@@ -2,15 +2,6 @@ console.log("hi, from client-side-app!");
 const PLAYLIST_API_ENDPOINT = 'https://lychee-shortcake-58019.herokuapp.com/api/playlist';
 const PLAYLIST = $('.playlist');
 
-function fetch() {
-
-   console.log("Making a GET request");
-   $.getJSON(PLAYLIST_API_ENDPOINT)
-   .then(render)
-   .catch(err => console.log(err));
-
-}
-
 function render(data) {
 
   PLAYLIST.empty();
@@ -38,24 +29,7 @@ function render(data) {
         });  
 }
 
-PLAYLIST.on('click', '.remove-button', function(event) {
-
-    event.preventDefault();
-    const thisID = $(this).parent().attr('data-id');
-    const thisDiv = $(this).parent();
-
-    remove(thisDiv);
-    $('.yes-button').click(function () {
-                    yes(thisID, thisDiv);         
-    });
-
-    $('.cancel-button').click(function () {
-                    cancel(thisDiv);
-    });
-
-}); 
-
-function remove(currentDiv) {
+function removeBegin(currentDiv) {
 
     currentDiv.find('.remove-button').hide();
     currentDiv.find('.update-button').hide();
@@ -67,7 +41,7 @@ function remove(currentDiv) {
       `)
 }
 
-function update(currentDiv) {
+function updateBegin(currentDiv) {
   
   const song = currentDiv.find('.song').text();
   const artist = currentDiv.find('.artist').text();
@@ -77,30 +51,99 @@ function update(currentDiv) {
  
   currentDiv.append(`
     <form class="song-form">
-      <label for="input-song-id">Song</label>
+      <label for="input-song-id"></label>
       <input class="input-song my-text" id="input-song-id" type="text" value="${song}" placeholder="Song"> 
 
-      <label for="input-artist-id">Song</label>
+      <label for="input-artist-id"></label>
       <input class="input-artist my-text" id="input-artist-id" type="text" value="${artist}" placeholder="Artist">
 
-      <label for="input-genre-id">Song</label>
+      <label for="input-genre-id"></label>
       <input class="input-genre my-text" id="input-genre-id" type="text" value="${genre}" placeholder="Genre"> 
-      <button class="button confirm-button">CONFIRM</button></a>
+      <button class="button confirm-update-button">CONFIRM</button></a>
       <button class="button cancel-button">CANCEL</button></a>
     </form>
   `);
-  
-
 }
 
-function confirm(id, currentDiv) {
+function startProcess(processName, currentDiv, button, confirm, id) {
+
+    processName(currentDiv);
+    $(button).click(function () {
+                    confirm(id, currentDiv);  
+    });
+
+    $('.cancel-button').click(function () {
+                    cancel(currentDiv);
+    });
+}
+
+function updateSong(event) {
+
+    event.preventDefault();
+    const thisID = $(this).parent().attr('data-id');
+    const thisDiv = $(this).parent();
+    startProcess(updateBegin, thisDiv, '.confirm-update-button', confirmUpdate, thisID);
+}
+
+function removeSong() {
+
+    const thisID = $(this).parent().attr('data-id');
+    const thisDiv = $(this).parent();
+    startProcess(removeBegin, thisDiv, '.yes-button', yesRemove, thisID);
+}
+
+function cancel(currentDiv) {
+
+    $('.are-you-sure-text').text("");
+    currentDiv.find('.song-form').remove();
+    currentDiv.find('.yes-button').hide();
+    currentDiv.find('.cancel-button').hide();
+    currentDiv.find('.remove-button').show();
+    currentDiv.find('.update-button').show();
+}
+
+function fetch() {
+
+   console.log("Making a GET request");
+   $.getJSON(PLAYLIST_API_ENDPOINT)
+   .then(render)
+   .catch(err => console.log(err));
+}
+
+function addSong(event) {
+
+    console.log("Making a POST request");
+    const userSong = $("#song-id").val();
+    const userArtist = $("#artist-id").val();
+    const userGenre = $("#genre-id").val();
+
+    $.ajax({
+        url: PLAYLIST_API_ENDPOINT,
+        dataType: 'json',
+        method: 'POST',
+        data: {
+            song: userSong,
+            artist: userArtist,
+            genre: userGenre
+        },
+        success: function(data) {
+                $('.added-song-message').show();
+        },
+        error: function(err) {
+          console.log(err);
+        }
+    });
+}
+
+function confirmUpdate(id, currentDiv) {
 
   const userSong = currentDiv.find('.input-song').val();
   const userArtist = currentDiv.find('.input-artist').val();
   const userGenre = currentDiv.find('.input-genre').val();
- 
   $.ajax({
+
         url: `${PLAYLIST_API_ENDPOINT}/${id}`,
+        dataType: 'json',
         method: 'PUT',
         data: {
 
@@ -123,13 +166,11 @@ function confirm(id, currentDiv) {
           console.log(err);
         }
     });
-
 }
 
-function yes(id, currentDiv) {
+function yesRemove(id, currentDiv) {
 
     console.log("Making a DELETE request");
-
     $.ajax({
         url: `${PLAYLIST_API_ENDPOINT}/${id}`,
         method: 'DELETE',
@@ -138,60 +179,11 @@ function yes(id, currentDiv) {
             currentDiv.text('Song has been deleted!')
         }
     });
-
 }
-
-function cancel(currentDiv) {
-
-    $('.are-you-sure-text').text("");
-    currentDiv.find('.song-form').remove();
-    currentDiv.find('.yes-button').hide();
-    currentDiv.find('.cancel-button').hide();
-    currentDiv.find('.remove-button').show();
-    currentDiv.find('.update-button').show();
-
-}
-
-PLAYLIST.on('click', '.update-button', function(event) {
-
-    const thisID = $(this).parent().attr('data-id');
-    const thisDiv = $(this).parent();
-
-    update(thisDiv);
-    $('.confirm-button').click(function () {
-                    confirm(thisID, thisDiv);
-    });
-
-    $('.cancel-button').click(function () {
-                    cancel(thisDiv);
-    });
-
-});
-
-$('.add-song-button').on('click', function (event) {
-
-    console.log("Making a POST request");
-    const userSong = $("#song-id").val();
-    const userArtist = $("#artist-id").val();
-    const userGenre = $("#genre-id").val();
-
-    $.ajax({
-        url: PLAYLIST_API_ENDPOINT,
-        method: 'POST',
-        data: {
-            song: userSong,
-            artist: userArtist,
-            genre: userGenre
-        },
-        success: function(data) {
-                $('.added-song-message').show();
-        },
-        error: function(err) {
-          console.log(err);
-        }
-    });
-
-});
 
 PLAYLIST.text("Internal Error: Server not running");
 fetch();
+$('.add-song-button').on('click', addSong);
+PLAYLIST.on('click', '.remove-button', removeSong); 
+PLAYLIST.on('click', '.update-button', updateSong);
+

@@ -5,7 +5,6 @@ const { Playlist } = require('./models');
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const formParser = bodyParser.urlencoded({ extended: true });
 
 router.get('/', (req, res) => {
 
@@ -15,7 +14,7 @@ router.get('/', (req, res) => {
 
 });
 
-router.post('/', formParser, (req, res) => {
+router.post('/', jsonParser, (req, res) => {
 
 		const {song, genre, artist} = req.body;
 		const isAnyPropertyMissing = !song || !genre || !artist;
@@ -26,7 +25,6 @@ router.post('/', formParser, (req, res) => {
 		}
 
         console.log('making a POST request');
-        console.log(req.body);
         Playlist.create({
 
                       song: req.body.song,
@@ -36,7 +34,8 @@ router.post('/', formParser, (req, res) => {
 
         }).then(data => {
           Playlist.findById(data._id, (error, song) => res.status(201).json(song.serialize()));
-        }).catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
 
 });
 
@@ -53,7 +52,7 @@ router.delete('/:id', (req, res) => {
 
 });
 
-router.put('/:id', formParser, (req, res) => {
+router.put('/:id', jsonParser, (req, res) => {
 
 		console.log('making a PUT request')
 		const id = req.params.id;
@@ -66,13 +65,13 @@ router.put('/:id', formParser, (req, res) => {
 														genre: req.body.genre
 													}
 												}, 
-												{ new: true } )
+												{ upsert: true, new: true })
 		.then(data => {
-          Playlist.findById(id, (error, song) => {
-	          	res.status(200).json(song);
-          });
-          
-        }).catch(err => console.log(err));
+          Playlist.findById(data._id, (error, song) => res.status(200).json(song.serialize()));
+        })
+        .catch(err => console.log(err));
+
+
 
 });
 
