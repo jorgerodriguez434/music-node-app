@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
 });
 
-router.post('/', jsonParser, (req, res) => {
+router.post('/', formParser, (req, res) => {
 
 		const {song, genre, artist} = req.body;
 		const isAnyPropertyMissing = !song || !genre || !artist;
@@ -53,7 +53,7 @@ router.delete('/:id', (req, res) => {
 
 });
 
-router.put('/:id', jsonParser, (req, res) => {
+router.put('/:id', formParser, (req, res) => {
 
 		console.log('making a PUT request')
 		const id = req.params.id;
