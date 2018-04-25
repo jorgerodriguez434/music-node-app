@@ -9,10 +9,10 @@ function render(data) {
             console.log("There are no songs!");
             PLAYLIST.text("Please insert a song to playlist!");
           } 
-	 data.map(item => {
-   	        PLAYLIST.append(
+   data.map(item => {
+            PLAYLIST.append(
 
-   					      ` 
+                  ` 
                     <div data-id="${item._id}" class="current-song">
                       
                         <h2 class="song">  ${item.song} </h2> 
@@ -23,8 +23,8 @@ function render(data) {
                     
                    </div>
                    <hr/>
-  					      `
-   			    );
+                  `
+            );
               
         });  
 }
@@ -34,7 +34,6 @@ function removeBegin(currentDiv) {
     currentDiv.find('.remove-button').hide();
     currentDiv.find('.update-button').hide();
     currentDiv.append(`
-
               <p class="are-you-sure-text"> Are you sure you want to remove this song? </p>
               <button class="button yes-button">YES</button></a>
               <button class="button cancel-button">CANCEL</button></a>
@@ -53,10 +52,8 @@ function updateBegin(currentDiv) {
     <form class="song-form">
       <label for="input-song-id"></label>
       <input class="input-song my-text" id="input-song-id" type="text" value="${song}" placeholder="Song"> 
-
       <label for="input-artist-id"></label>
       <input class="input-artist my-text" id="input-artist-id" type="text" value="${artist}" placeholder="Artist">
-
       <label for="input-genre-id"></label>
       <input class="input-genre my-text" id="input-genre-id" type="text" value="${genre}" placeholder="Genre"> 
       <button class="button confirm-update-button">CONFIRM</button></a>
@@ -186,4 +183,3 @@ fetch();
 $('.add-song-button').on('click', addSong);
 PLAYLIST.on('click', '.remove-button', removeSong); 
 PLAYLIST.on('click', '.update-button', updateSong);
-
