@@ -22,11 +22,11 @@ A user can create a playlist by adding songs. Upon adding songs, a user can remo
    * Song (String)
    * Artist (String)
    * Genre (String)
-    ### GET all songs
+   ### GET all songs
    * ${Base url}/api/playlist
    ### POST a song
    * ${Base url}/api/playlist
-   * Takes a song, artist, and genere as parameters
+   * Takes a song, artist, and genre as parameters
    ### DELETE a song
    * ${Base url}/api/playlist/${id}
    ### UPDATE a song
