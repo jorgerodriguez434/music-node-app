@@ -22,22 +22,16 @@ function render(data) {
                       <button class="button remove-button">REMOVE</button></a>
                     
                    </div>
-                   <hr/>
+                   <div class"current-line"> 
+                      <hr/>
+                   </div>
                   `
             );
               
         });  
 }
 
-function asyncJS (cb) {
-  
-    return new Promise(function(resolve, reject){
-      return setTimeout(function() {
-       resolve('success!');
-     }, 3000)
-    });
-
-function removeBegin(currentDiv) {
+function initiateRemoval(currentDiv) {
 
     currentDiv.find('.remove-button').hide();
     currentDiv.find('.update-button').hide();
@@ -48,7 +42,7 @@ function removeBegin(currentDiv) {
       `)
 }
 
-function updateBegin(currentDiv) {
+function initiateUpdate(currentDiv) {
   
   const song = currentDiv.find('.song').text();
   const artist = currentDiv.find('.artist').text();
@@ -70,9 +64,9 @@ function updateBegin(currentDiv) {
   `);
 }
 
-function startProcess(processName, currentDiv, button, confirm, id) {
+function manipulateSong(process, currentDiv, button, confirm, id) {
 
-    processName(currentDiv);
+    process(currentDiv);
     $(button).click(function () {
                     confirm(id, currentDiv);  
     });
@@ -87,14 +81,15 @@ function updateSong(event) {
     event.preventDefault();
     const thisID = $(this).parent().attr('data-id');
     const thisDiv = $(this).parent();
-    startProcess(updateBegin, thisDiv, '.confirm-update-button', confirmUpdate, thisID);
+    manipulateSong(initiateUpdate, thisDiv, '.confirm-update-button', confirmUpdate, thisID);
 }
 
 function removeSong() {
 
     const thisID = $(this).parent().attr('data-id');
     const thisDiv = $(this).parent();
-    startProcess(removeBegin, thisDiv, '.yes-button', yesRemove, thisID);
+    //const thisLine = 
+    manipulateSong(initiateRemoval, thisDiv, '.yes-button', yesRemove, thisID);
 }
 
 function cancel(currentDiv) {
@@ -182,6 +177,10 @@ function yesRemove(id, currentDiv) {
         success: function(data) {
             console.log('Data has been deleted');
             currentDiv.text('Song has been deleted!');
+            setTimeout(function(){
+                      console.log('3 seconds have passed');
+                      currentDiv.remove();
+            }, 3000);
         }
     });
 }
