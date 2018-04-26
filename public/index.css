@@ -64,9 +64,7 @@ label {
 a{
 	text-decoration: none;
 }
-.red{
-	color: red;
-}
+
 .added-song-message{
 	display: none;
 }
@@ -85,7 +83,8 @@ a{
 	display: none;
 }
  .my-text{
- 	font-size: 20px;
+ 	font-size: 12px;
+ 	padding-left: 10px;
  }
 .black{
 	color: black;

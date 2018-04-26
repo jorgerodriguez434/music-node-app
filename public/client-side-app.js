@@ -29,6 +29,14 @@ function render(data) {
         });  
 }
 
+function asyncJS (cb) {
+  
+    return new Promise(function(resolve, reject){
+      return setTimeout(function() {
+       resolve('success!');
+     }, 3000)
+    });
+
 function removeBegin(currentDiv) {
 
     currentDiv.find('.remove-button').hide();
@@ -173,7 +181,7 @@ function yesRemove(id, currentDiv) {
         method: 'DELETE',
         success: function(data) {
             console.log('Data has been deleted');
-            currentDiv.text('Song has been deleted!')
+            currentDiv.text('Song has been deleted!');
         }
     });
 }
