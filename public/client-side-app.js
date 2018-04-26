@@ -1,5 +1,5 @@
 console.log("hi, from client-side-app!");
-const PLAYLIST_API_ENDPOINT = 'https://lychee-shortcake-58019.herokuapp.com/api/playlist';
+const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist';
 const PLAYLIST = $('.playlist');
 
 function render(data) {
@@ -116,13 +116,14 @@ function addSong(event) {
 
     $.ajax({
         url: PLAYLIST_API_ENDPOINT,
-        dataType: 'json',
+        contentType: 'application/json',
         method: 'POST',
-        data: {
-            song: userSong,
-            artist: userArtist,
-            genre: userGenre
-        },
+        data: JSON.stringify({
+          
+              song: userSong,
+              artist: userArtist,
+              genre: userGenre
+        }),
         success: function(data) {
                 $('.added-song-message').show();
         },
@@ -140,15 +141,14 @@ function confirmUpdate(id, currentDiv) {
   $.ajax({
 
         url: `${PLAYLIST_API_ENDPOINT}/${id}`,
-        dataType: 'json',
+        contentType: 'application/json',
         method: 'PUT',
-        data: {
+        data: JSON.stringify({
 
             song: userSong,
             artist: userArtist,
             genre: userGenre
-
-        },
+        }),
         success: function(data) {
 
             console.log('SUCCESS!');

@@ -42,9 +42,9 @@ describe ('Music App', function() {
 					   .post('/api/playlist')
 					   .send({
 					   	
-		              		song: "When Doves Cry",
-		             	    artist: "Prince",
-		             	    genre: "Pop"
+		              		"song": "When Doves Cry",
+		             	    "artist": "Prince",
+		             	    "genre": "Pop"
 
 					   })
 					   .then(function (res) {
@@ -80,9 +80,9 @@ describe ('Music App', function() {
 					   .put('/api/playlist/5addb204c085b2b0ed8173c1')
 					   .send({
 
-		              		song: "When Doves Cry",
-		             	    artist: "Michael Jackson",
-		             	    genre: "Pop"
+		              		"song": "When Doves Cry",
+		             	    "artist": "Michael Jackson",
+		             	    "genre": "Pop"
 
 					   })
 					   .then(function (res) {
