@@ -1,5 +1,5 @@
 console.log("hi, from client-side-app!");
-const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist';
+const PLAYLIST_API_ENDPOINT = 'https://lychee-shortcake-58019.herokuapp.com/api/playlist';
 const PLAYLIST = $('.playlist');
 
 function render(data) {
@@ -20,11 +20,10 @@ function render(data) {
                         <p class="genre"> ${item.genre} </p>
                        <button class="button update-button">UPDATE SONG</button></a>  
                       <button class="button remove-button">REMOVE</button></a>
-                    
+                      
                    </div>
-                   <div class"current-line"> 
-                      <hr/>
-                   </div>
+                   <hr/>
+                                        
                   `
             );
               
@@ -39,6 +38,7 @@ function initiateRemoval(currentDiv) {
               <p class="are-you-sure-text"> Are you sure you want to remove this song? </p>
               <button class="button yes-button">YES</button></a>
               <button class="button cancel-button">CANCEL</button></a>
+              
       `)
 }
 
@@ -69,6 +69,7 @@ function manipulateSong(process, currentDiv, button, confirm, id) {
     process(currentDiv);
     $(button).click(function () {
                     confirm(id, currentDiv);  
+                    
     });
 
     $('.cancel-button').click(function () {
@@ -88,7 +89,6 @@ function removeSong() {
 
     const thisID = $(this).parent().attr('data-id');
     const thisDiv = $(this).parent();
-    //const thisLine = 
     manipulateSong(initiateRemoval, thisDiv, '.yes-button', yesRemove, thisID);
 }
 
@@ -178,7 +178,6 @@ function yesRemove(id, currentDiv) {
             console.log('Data has been deleted');
             currentDiv.text('Song has been deleted!');
             setTimeout(function(){
-                      console.log('3 seconds have passed');
                       currentDiv.remove();
             }, 3000);
         }
@@ -187,6 +186,6 @@ function yesRemove(id, currentDiv) {
 
 PLAYLIST.text("Internal Error: Server not running");
 fetch();
-$('.add-song-button').on('click', addSong);
+$('.add-song-button').click(addSong);
 PLAYLIST.on('click', '.remove-button', removeSong); 
 PLAYLIST.on('click', '.update-button', updateSong);
