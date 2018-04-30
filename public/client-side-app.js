@@ -22,8 +22,7 @@ function render(data) {
                       <button class="button remove-button">REMOVE</button></a>
                       
                    </div>
-                   <hr/>
-                                        
+                     
                   `
             );
               
@@ -37,8 +36,7 @@ function initiateRemoval(currentDiv) {
     currentDiv.append(`
               <p class="are-you-sure-text"> Are you sure you want to remove this song? </p>
               <button class="button yes-button">YES</button></a>
-              <button class="button cancel-button">CANCEL</button></a>
-              
+              <button class="button cancel-button">CANCEL</button></a>     
       `)
 }
 

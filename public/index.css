@@ -112,24 +112,11 @@ a{
   padding-bottom: 50px;
 
  }
-.content2{
- 	height: 700px;
- 	background-image: url('https://templated.co/items/demos/transitive/images/bg.jpg');
- 	background-size: cover;
- 	text-align: center;
- 	opacity: .9;
- 	background-color: transparent;
- 	margin-bottom: 25px;
- }
 .lorem-content{
 	padding: 30px 30px 30px 30px;
 }
  .button:hover {
   background-color: #80bbff; 
-}
-.learn-more-button:hover{
-	background-color: #505050;
-
 }
 .button {
   border-radius: 5px;
@@ -154,6 +141,9 @@ a{
 	color: #C8C8C8;
 	margin-bottom: 40px;	
 }
+.current-song{
+	border-bottom: 1px solid #C8C8C8;
+}
 
  /* Non-mobile */
 @media only screen and (min-width: 740px) {
@@ -174,7 +164,5 @@ a{
 	.start-button{
 		margin-top: 80px;
 	}
-
-
 	
 }
