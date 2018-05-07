@@ -110,6 +110,7 @@ function fetch() {
 
 function addSong(event) {
 
+    event.preventDefault();
     console.log("Making a POST request");
     const userSong = $("#song-id").val();
     const userArtist = $("#artist-id").val();
