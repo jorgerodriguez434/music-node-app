@@ -45,3 +45,4 @@ A user can create a playlist by adding songs. Upon adding songs, a user can remo
 * Login page
 * Multiple playlists
 * Play songs/videos
+* Pictures of artists
