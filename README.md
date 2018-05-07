@@ -39,3 +39,9 @@ A user can create a playlist by adding songs. Upon adding songs, a user can remo
 * JQuery
 * Express
 * Node.js
+
+## Future Components
+* Search bar
+* Login page
+* Multiple playlists
+* Play songs/videos
