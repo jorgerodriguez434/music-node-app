@@ -1,5 +1,5 @@
 console.log("hi, from client-side-app!");
-const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist';
+const PLAYLIST_API_ENDPOINT = 'https://www.youtube.com/embed/sxamVp-GgFQ/api/playlist';
 const PLAYLIST = $('.playlist');
 
 function render(data) {
