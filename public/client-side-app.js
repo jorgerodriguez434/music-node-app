@@ -1,5 +1,5 @@
 console.log("hi, from client-side-app!");
-const PLAYLIST_API_ENDPOINT = 'https://lychee-shortcake-58019.herokuapp.com/api/playlist';
+const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist';
 const PLAYLIST = $('.playlist');
 
 function render(data) {
@@ -136,6 +136,10 @@ function addSong(event) {
         }),
         success: function(data) {
                 $('.added-song-message').show();
+                const userSong = $("#song-id").val("");
+                const userArtist = $("#artist-id").val("");
+                const userGenre = $("#genre-id").val("");
+                const userVideo = $("#video-id").val(""); 
         },
         error: function(err) {
           console.log(err);
