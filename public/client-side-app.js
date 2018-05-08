@@ -1,5 +1,5 @@
 console.log("hi, from client-side-app!");
-const PLAYLIST_API_ENDPOINT = 'https://www.youtube.com/embed/sxamVp-GgFQ/api/playlist';
+const PLAYLIST_API_ENDPOINT = 'https://lychee-shortcake-58019.herokuapp.com//api/playlist';
 const PLAYLIST = $('.playlist');
 
 function render(data) {
