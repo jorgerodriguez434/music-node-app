@@ -1,6 +1,6 @@
 # Song Organizer
 
-A user can create a playlist by adding songs. Upon adding songs, a user can remove or update song. This songs will stay with you wherever you go! Check the app out here: https://lychee-shortcake-58019.herokuapp.com/
+A user can create a playlist by adding songs. Upon adding songs, a user can remove or update song. These songs will stay with you wherever you go! Check the app out here: https://lychee-shortcake-58019.herokuapp.com/
 
 ## Requirements
 * Create a client prototype that allows non-technical users to do something interesting or valuable with the API.
