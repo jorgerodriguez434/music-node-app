@@ -1,5 +1,5 @@
 console.log("hi, from client-side-app!");
-const PLAYLIST_API_ENDPOINT = 'https://lychee-shortcake-58019.herokuapp.com/api/playlist';
+const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist';
 const PLAYLIST = $('.playlist');
 
 function render(data) {
@@ -60,7 +60,7 @@ function initiateUpdate(currentDiv) {
       <label for="input-genre-id"></label>
       <input class="input-genre my-text" id="input-genre-id" type="text" value="${genre}" placeholder="Genre"> 
       <label for="input-video-id"></label>
-      <input type="text" id="input-video-id"  placeholder="Video" value="${video}" class="my-text">
+      <input type="text" id="input-video-id"  placeholder="Embeded Video" value="${video}" class="my-text">
       <button class="button confirm-update-button">CONFIRM</button></a>
       <button class="button cancel-button">CANCEL</button></a>
     </form>
