@@ -46,3 +46,4 @@ A user can create a playlist by adding songs. Upon adding songs, a user can remo
 * Multiple playlists
 * Play songs/videos
 * Pictures of artists
+* Get concert tickets
