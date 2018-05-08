@@ -34,7 +34,6 @@ p{
 }
 img{
 	width: 100%;
-
 }
 hr {
     display: block;
@@ -64,7 +63,10 @@ label {
 a{
 	text-decoration: none;
 }
-
+.video{
+	width:80%;
+	height: 300px;
+}
 .added-song-message{
 	display: none;
 }
@@ -96,6 +98,7 @@ a{
   color: gray;
   font-size: 20px;
   text-align: center;
+  
  }
  .playlist img{
  	width: 300px;
@@ -141,7 +144,7 @@ a{
 	color: #C8C8C8;
 	margin-bottom: 40px;	
 }
-.current-song{
+.song{
 	border-bottom: 1px solid #C8C8C8;
 }
 
@@ -164,5 +167,10 @@ a{
 	.start-button{
 		margin-top: 80px;
 	}
+	.video{
+		width: 560px;
+		height: 315px;
+	}
+	
 	
 }

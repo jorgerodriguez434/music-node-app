@@ -31,7 +31,8 @@ router.post('/', jsonParser, (req, res) => {
 
                       song: req.body.song,
                       artist: req.body.artist,
-                      genre: req.body.genre,
+                      video: req.body.video,
+                      genre: req.body.genre
 
 
         }).then(data => {

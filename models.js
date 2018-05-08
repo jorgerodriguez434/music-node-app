@@ -6,6 +6,7 @@ const PlaylistSchema =  mongoose.Schema({
 	song: String,
 	artist: String,
 	genre: String,
+	video: String,
 	created: {type: Date, default: Date.now}
 
 });
@@ -16,7 +17,8 @@ PlaylistSchema.methods.serialize = function() {
     
     song: this.song,
     artist: this.artist,
-    genre: this.genre,
+    video: this.video,
+    genre: this.genre
 
   };
 };
