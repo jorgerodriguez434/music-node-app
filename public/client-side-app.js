@@ -1,34 +1,45 @@
 console.log("hi, from client-side-app!");
 const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist';
+const YOUTUBE_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search";
 const PLAYLIST = $('.playlist');
 
 function render(data) {
-
   PLAYLIST.empty();
-  if(data.length === 0){
-            console.log("There are no songs!");
-            PLAYLIST.text("Please insert a song to playlist!");
-          } 
-   data.map(item => {
-            console.log(item.video);
-            PLAYLIST.append(
-
-                  ` 
-                    <div data-id="${item._id}" class="song">
+  if (data.length === 0) {
+    console.log("There are no songs!");
+    PLAYLIST.text("Please insert a song to playlist!");
+  }
+  data.map(chanson => {
+    fetchYoutubeVideo(`${chanson.song}`, (youtubeData) => {
+      console.log(youtubeData.items);
+      youtubeData.items.map(video => {
+        PLAYLIST.append(` 
+                    <div data-id="${chanson._id}" class="current-song">
                       
-                        <h2 id="display-song">  ${item.song} </h2> 
-                        <p id="display-artist"> ${item.artist} </p>
-                        <p id="display-genre"> ${item.genre} </p>
-                        <iframe id="display-video" class="video" src=${item.video} frameborder="0" allowfullscreen></iframe>
-                        <button class="button update-button">UPDATE SONG</button></a>  
-                        <button class="button remove-button">REMOVE</button></a>
+                        <h2 class="song">  ${chanson.song} </h2> 
+                        <p class="artist"> ${chanson.artist} </p>
+                        <p class="genre"> ${chanson.genre} </p>
+                        <iframe class="video" src="https://www.youtube.com/embed/${video.id.videoId}" title="video"> </iframe>
+                       <button class="button update-button">UPDATE SONG</button></a>  
+                      <button class="button remove-button">REMOVE</button></a>
                       
                    </div>
                      
-                  `
-            );
-              
-        });  
+                `);
+      });
+    });
+  });
+}
+
+function fetchYoutubeVideo(searchTerm, cb){
+  const params = {
+    part: 'snippet', 
+    key: "AIzaSyBrEPE9JGPWkYpX06O2gMOloYSgUKXcMhQ",
+    q: searchTerm,
+    maxResults: 1,
+  };
+  
+  $.getJSON(YOUTUBE_SEARCH_URL, params).then(cb);
 }
 
 function initiateRemoval(currentDiv) {
@@ -44,10 +55,9 @@ function initiateRemoval(currentDiv) {
 
 function initiateUpdate(currentDiv) {
   
-  const song = currentDiv.find('#display-song').text();
-  const artist = currentDiv.find('#display-artist').text();
-  const genre = currentDiv.find('#display-genre').text();
-  const video = currentDiv.find('#display-video').text();
+  const song = currentDiv.find('.song').text();
+  const artist = currentDiv.find('.artist').text();
+  const genre = currentDiv.find('.genre').text();
   currentDiv.find('.remove-button').hide();
   currentDiv.find('.update-button').hide();
  
@@ -59,8 +69,6 @@ function initiateUpdate(currentDiv) {
       <input class="input-artist my-text" id="input-artist-id" type="text" value="${artist}" placeholder="Artist">
       <label for="input-genre-id"></label>
       <input class="input-genre my-text" id="input-genre-id" type="text" value="${genre}" placeholder="Genre"> 
-      <label for="input-video-id"></label>
-      <input type="text" id="input-video-id"  placeholder="Embeded Video" value="${video}" class="my-text">
       <button class="button confirm-update-button">CONFIRM</button></a>
       <button class="button cancel-button">CANCEL</button></a>
     </form>
@@ -120,8 +128,6 @@ function addSong(event) {
     const userSong = $("#song-id").val();
     const userArtist = $("#artist-id").val();
     const userGenre = $("#genre-id").val();
-    const userVideo = $("#video-id").val();
-    console.log(userVideo);
 
     $.ajax({
         url: PLAYLIST_API_ENDPOINT,
@@ -131,15 +137,10 @@ function addSong(event) {
           
               song: userSong,
               artist: userArtist,
-              video: userVideo,
               genre: userGenre
         }),
         success: function(data) {
                 $('.added-song-message').show();
-                const userSong = $("#song-id").val("");
-                const userArtist = $("#artist-id").val("");
-                const userGenre = $("#genre-id").val("");
-                const userVideo = $("#video-id").val(""); 
         },
         error: function(err) {
           console.log(err);
@@ -152,8 +153,6 @@ function confirmUpdate(id, currentDiv) {
   const userSong = currentDiv.find('.input-song').val();
   const userArtist = currentDiv.find('.input-artist').val();
   const userGenre = currentDiv.find('.input-genre').val();
-  const userVideo = currentDiv.find('.input-video').val();
-
   $.ajax({
 
         url: `${PLAYLIST_API_ENDPOINT}/${id}`,
@@ -163,16 +162,14 @@ function confirmUpdate(id, currentDiv) {
 
             song: userSong,
             artist: userArtist,
-            video: userVideo,
             genre: userGenre
         }),
         success: function(data) {
 
             console.log('SUCCESS!');
-            currentDiv.find('#display-song').text(userSong);
-            currentDiv.find('#display-artist').text(userArtist);
-            currentDiv.find('#display-genre').text(userGenre);
-            currentDiv.find('#display-video').text(userVideo);
+            currentDiv.find('.song').text(userSong);
+            currentDiv.find('.artist').text(userArtist);
+            currentDiv.find('.genre').text(userGenre);
             currentDiv.find('.song-form').remove();
             currentDiv.find('.remove-button').show();
             currentDiv.find('.update-button').show();

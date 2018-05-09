@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { Playlist } = require('./models');
+const { Playlist } = require('../models');
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
@@ -31,8 +31,7 @@ router.post('/', jsonParser, (req, res) => {
 
                       song: req.body.song,
                       artist: req.body.artist,
-                      video: req.body.video,
-                      genre: req.body.genre
+                      genre: req.body.genre,
 
 
         }).then(data => {

@@ -8,9 +8,10 @@ mongoose.Promise = global.Promise;
 
 const morgan = require('morgan');
 
-const router = require('./router');
-const { DATABASE_URL, PORT } = require('./config');
-
+const mainRouter = require('./routers/mainRouter');
+const signupRouter = require('./routers/signupRouter');
+const loginRouter = require('./routers/loginRouter');
+const { DATABASE_URL, PORT} = require('./config');
 const cors = require('cors');
 
 app.use(function(req, res, next) {
@@ -20,11 +21,11 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/api/playlist', router)
+app.use('/api/playlist', mainRouter);
+
 app.use(morgan('common'));
 app.use(express.static('public'));
 
- 
 let server;
 
 // this function connects to our database, then starts the server
