@@ -10,8 +10,8 @@ function render(data) {
     PLAYLIST.text("Please insert a song to playlist!");
   }
   data.map(chanson => {
-    fetchYoutubeVideo(`${chanson.song}`, (youtubeData) => {
-      console.log(youtubeData.items);
+    console.log(`${chanson.song} ${chanson.artist}`);
+    fetchYoutubeVideo(`${chanson.song} ${chanson.artist}`, (youtubeData) => {
       youtubeData.items.map(video => {
         PLAYLIST.append(` 
                     <div data-id="${chanson._id}" class="current-song">
