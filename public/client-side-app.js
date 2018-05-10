@@ -19,7 +19,7 @@ function render(data) {
                         <h2 class="song">  ${chanson.song} </h2> 
                         <p class="artist"> ${chanson.artist} </p>
                         <p class="genre"> ${chanson.genre} </p>
-                        <iframe class="video" src="https://www.youtube.com/embed/${video.id.videoId}" title="video"> </iframe>
+                        <iframe class="video" src="https://www.youtube.com/embed/${video.id.videoId}" title="video"> allowfullscreen</iframe>
                        <button class="button update-button">UPDATE SONG</button></a>  
                       <button class="button remove-button">REMOVE</button></a>
                       
