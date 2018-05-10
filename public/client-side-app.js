@@ -1,6 +1,6 @@
 console.log("hi, from client-side-app!");
 const PLAYLIST_API_ENDPOINT = 'https://lychee-shortcake-58019.herokuapp.com/api/playlist';
-const YOUTUBE_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search";
+const YOUTUBE_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search"; 
 const PLAYLIST = $('.playlist');
 
 function render(data) {
