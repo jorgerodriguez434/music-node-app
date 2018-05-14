@@ -34,10 +34,13 @@ router.post('/', jsonParser, (req, res) => {
                       genre: req.body.genre,
 
 
-        }).then(data => {
+        }).then(song => res.status(201).json(song.serialize())).catch(err => console.log(err))
+
+
+        /*.then(data => {
           Playlist.findById(data._id, (error, song) => res.status(201).json(song.serialize()));
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err)); */
 
 });
 

@@ -1,5 +1,5 @@
 console.log("hi, from client-side-app!");
-const PLAYLIST_API_ENDPOINT = 'https://lychee-shortcake-58019.herokuapp.com/api/playlist';
+const PLAYLIST_API_ENDPOINT = 'http://localhost:8080/api/playlist';
 const YOUTUBE_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search"; 
 const PLAYLIST = $('.playlist');
 
@@ -12,7 +12,7 @@ function render(data) {
   data.map(chanson => {
     console.log(`${chanson.song} ${chanson.artist}`);
     fetchYoutubeVideo(`${chanson.song} ${chanson.artist}`, (youtubeData) => {
-      youtubeData.items.map(video => {
+        youtubeData.items.map(video => {
         PLAYLIST.append(` 
                     <div data-id="${chanson._id}" class="current-song">
                       
@@ -90,7 +90,7 @@ function manipulateSong(process, currentDiv, button, confirm, id) {
 
 function updateSong(event) {
 
-    event.preventDefault();
+   // event.preventDefault();
     const thisID = $(this).parent().attr('data-id');
     const thisDiv = $(this).parent();
     manipulateSong(initiateUpdate, thisDiv, '.confirm-update-button', confirmUpdate, thisID);
