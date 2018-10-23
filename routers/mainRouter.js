@@ -49,7 +49,7 @@ router.delete('/:id', (req, res) => {
 		console.log('making a DELETE request');
 		Playlist.findByIdAndRemove(req.params.id)
 		.then( song => {
-		
+
 				res.status(200).end();
 		})
 		.catch(err => console.log(err));
@@ -61,15 +61,15 @@ router.put('/:id', jsonParser, (req, res) => {
 
 		console.log('making a PUT request')
 		const id = req.params.id;
-		Playlist.findByIdAndUpdate(id, 
-												{ 
+		Playlist.findByIdAndUpdate(id,
+												{
 													$set:
-													{	
+													{
 														song: req.body.song,
 														artist: req.body.artist,
 														genre: req.body.genre
 													}
-												}, 
+												},
 												{ upsert: true, new: true })
 		.then(data => {
           Playlist.findById(data._id, (error, song) => res.status(200).json(song.serialize()));
