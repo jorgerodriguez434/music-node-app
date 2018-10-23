@@ -9,7 +9,7 @@ A user can create a playlist by adding songs. Upon adding songs, a user can remo
  ![image](https://user-images.githubusercontent.com/18128525/39194420-52966334-47a3-11e8-92c1-abaf737f2c1f.png)
  ![image](https://user-images.githubusercontent.com/18128525/39194841-25152dd6-47a4-11e8-9ec3-9fe7aa80113d.png)
 
-## API Documentatiom
+## API Documentation
    ### Playlist attributes
    * Song (String)
    * Artist (String)
