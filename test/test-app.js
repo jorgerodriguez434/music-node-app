@@ -1,4 +1,4 @@
-const chai = require('chai');
+const chai = require('chai'); //testing 1
 const http = require('chai-http');
 const expect = chai.expect;
 const mongoose = require('mongoose');
@@ -19,7 +19,7 @@ before(function() {
 
 
 describe ('Music App', function() {
-	
+
 
 	it ('should return a json object on GET request with 200 status code', function() {
 
@@ -41,7 +41,7 @@ describe ('Music App', function() {
 					   .request(app)
 					   .post('/api/playlist')
 					   .send({
-					   	
+
 		              		"song": "When Doves Cry",
 		             	    "artist": "Prince",
 		             	    "genre": "Pop"
@@ -55,7 +55,7 @@ describe ('Music App', function() {
         					expect(res.body.artist).to.equal("Prince");
         					expect(res.body.genre).to.equal("Pop");
         					expect(res).to.have.status(201);
-        					
+
 					   });
 
 	});
@@ -89,11 +89,11 @@ describe ('Music App', function() {
 
 					   		expect(res).to.be.json;
 					   		expect(res).to.have.status(200);
-					   		expect(res.body).to.not.be.null;   
+					   		expect(res.body).to.not.be.null;
 					   		expect(res.body.song).to.equal("When Doves Cry");
         					expect(res.body.artist).to.equal("Michael Jackson");
-        					expect(res.body.genre).to.equal("Pop");    					
-					   		
+        					expect(res.body.genre).to.equal("Pop");
+
 					   });
 
 	});
