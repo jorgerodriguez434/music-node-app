@@ -1,4 +1,4 @@
-const chai = require('chai'); //testing 1
+const chai = require('chai'); //testing 2
 const http = require('chai-http');
 const expect = chai.expect;
 const mongoose = require('mongoose');
